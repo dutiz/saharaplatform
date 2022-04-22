@@ -13,7 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@fontsource/poppins": "^4.5.5",
+    "@fontsource/mulish": "^4.5.7",
+    "@fontsource/ropa-sans": "^4.5.5",
     "autoprefixer": "^10.4.4",
     "next": "^12.1.5",
     "next-seo": "^5.1.0",

@@ -7,12 +7,26 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Poppins, -apple-system, BlinkMacSystemFont',
+        sans: 'Mulish',
+        sansserif: 'Montserrat, sans-serif',
       },
       colors: {
         gray: {
           ...config.colors.gray,
           200: '#F4F4F4',
+          600: '#928983',
+        },
+        blue: {
+          ...config.colors.blue,
+          100: '#C4C4C4',
+        },
+        red: {
+          ...config.colors.red,
+          500: '#E34337',
+        },
+        orange: {
+          ...config.colors.orange,
+          500: '#F37202',
         },
       },
     },
