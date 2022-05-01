@@ -16,7 +16,7 @@ export default function HeaderSection() {
             <p className="mt-5 font-sansserif">
               Making a resevation is easy and takes just a couple of minutes
             </p>
-            <Button islink className="mt-4" href="/about">
+            <Button islink className="mt-4" href="/menu">
               Our Menu
             </Button>
             

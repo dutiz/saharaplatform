@@ -1,4 +1,5 @@
 import HeaderSection from '@/components/sections/HeaderSection'
+import MenuSection from '@/components/sections/MenuSection'
 import ServiceSection from '@/components/sections/ServiceSection'
 import Layout from '@/layout/Layout'
 
@@ -9,6 +10,8 @@ export default function Home() {
       <HeaderSection />
       {/* Service Section  */}
       <ServiceSection />
+      {/* Menu Section */}
+      <MenuSection></MenuSection>
     </Layout>
   )
 }
