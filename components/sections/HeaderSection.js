@@ -11,7 +11,7 @@ export default function HeaderSection() {
     >
       <div className="container py-10">
         <div className="row justify-end">
-          <div className="col-6">
+          <div className="md:col-6">
             <h1 className="font-extrabold text-6xl">Meet , Eat , Enjoy the true taste</h1>
             <p className="mt-5 font-sansserif">
               Making a resevation is easy and takes just a couple of minutes
