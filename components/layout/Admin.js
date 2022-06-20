@@ -1,19 +1,18 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import FooterSection from '../sections/FooterSection'
 
-const Navigation = dynamic(() => import('@/components/layout/Navigation'), { ssr: false })
+const AdminNavigation = dynamic(() => import('@/components/layout/AdminNavigation'), { ssr: false })
 
-export default function Layout({ children, title = null }) {
+export default function Admin({ children, title = null }) {
   const dev = process.env.NODE_ENV === 'development'
 
   return (
     <>
       <Head>
-        <title>{title ? `${title} - Sahara Platform` : 'Sahara Platform'}</title>
+        <title>{title ? `${title} - Admin - Sahara Platform` : 'Sahara Platform'}</title>
 
         {/* Favicons */}
-        
+
         <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="./favicons/favicon-16x16.png" />
@@ -23,14 +22,16 @@ export default function Layout({ children, title = null }) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <div className={`font-sans antialiased flex flex-col ${dev ? 'debug-screens' : ''}`}>
+        <div className="row">
+          <div className="col-4">
+            <AdminNavigation/> 
+          </div>
+          <div className="col-8">
+            <h1>Hellow</h1>
+          </div>
+        </div>
         {/* Navigation here */}
-        <Navigation />
-
-        {children}
-
         {/* Footer here */}
-
-        <FooterSection />
       </div>
     </>
   )
