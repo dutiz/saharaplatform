@@ -1,9 +1,10 @@
+import axios from 'axios'
 import HeaderSection from '@/components/sections/HeaderSection'
 import MenuSection from '@/components/sections/MenuSection'
 import ServiceSection from '@/components/sections/ServiceSection'
 import Layout from '@/layout/Layout'
 
-export default function Home() {
+export default function Home({menuList}) {
   return (
     <Layout title="Home">
       {/* Header Section Example */}
@@ -11,7 +12,16 @@ export default function Home() {
       {/* Service Section  */}
       <ServiceSection />
       {/* Menu Section */}
-      <MenuSection></MenuSection>
+      <MenuSection menuList={menuList}></MenuSection>
     </Layout>
   )
+}
+
+export async function getServerSideProps(){
+  const res = await axios.get('http://localhost:3000/api/products')
+  return{
+    props:{
+      menuList: res.data,
+    }
+  }
 }
