@@ -1,8 +1,9 @@
 import Layout from '@/components/layout/Layout'
 import MenuItem from '@/components/MenuItem'
+import axios from 'axios'
 import React from 'react'
 
-export default function menu() {
+export default function menu({ menuList }) {
   return (
     <Layout title="Menu">
       <div className="bg-blue-100">
@@ -13,10 +14,22 @@ export default function menu() {
             </div>
           </div>
           <div className="row">
-            <MenuItem />
+            {menuList.map((menu) => (
+              <MenuItem key="menu._id" menu={menu} />
+            ))}
           </div>
         </div>
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await axios.get('http://localhost:3000/api/products')
+
+  return {
+    props: {
+      menuList: res.data,
+    },
+  }
 }
