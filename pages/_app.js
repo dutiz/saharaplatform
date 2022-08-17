@@ -3,6 +3,9 @@ import '@fontsource/mulish/500.css'
 import '@fontsource/mulish/700.css'
 import '@fontsource/mulish/800.css'
 
+import store from 'redux/store'
+import { Provider } from 'react-redux'
+
 import { DefaultSeo } from 'next-seo'
 
 function MyApp({ Component, pageProps }) {
@@ -17,7 +20,9 @@ function MyApp({ Component, pageProps }) {
           description: 'Best way to eat healthy',
         }}
       />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   )
 }
