@@ -40,7 +40,7 @@ export default function products({ products }) {
                     </span>
                   </td>
                   <td>
-                    <Image src={product.img} width={100} height={100} priority />
+                    <Image alt={product.title} src={product.img} width={100} height={100} priority />
                   </td>
                   <td>{product.title}</td>
 

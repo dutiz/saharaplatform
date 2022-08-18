@@ -2,10 +2,13 @@ import dbConnect from 'utils/mongo'
 import Product from 'models/Product'
 
 export default async function handler(req, res) {
-  const { method, query: { id } } = req
+  const {
+    method,
+    query: { id },
+  } = req
 
   dbConnect()
-  
+
   if (method === 'GET') {
     try {
       const product = await Product.findById(id)
@@ -17,8 +20,8 @@ export default async function handler(req, res) {
 
   if (method === 'PUT') {
     try {
-      const product = await Product.findyByIdAndUpdate(id,req.body,{
-        new:true,
+      const product = await Product.findyByIdAndUpdate(id, req.body, {
+        new: true,
       })
       res.status(201).json(product)
     } catch (err) {
@@ -27,8 +30,8 @@ export default async function handler(req, res) {
   }
   if (method === 'DELETE') {
     try {
-      await Product.findByIdAndDelete(id);
-      res.status(200).json("The product has been Deleted!")
+      await Product.findByIdAndDelete(id)
+      res.status(200).json('The product has been Deleted!')
     } catch (err) {
       res.status(500).json(err)
     }

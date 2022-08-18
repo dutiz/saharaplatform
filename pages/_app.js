@@ -5,7 +5,6 @@ import '@fontsource/mulish/800.css'
 
 import store from 'redux/store'
 import { Provider } from 'react-redux'
-
 import { DefaultSeo } from 'next-seo'
 
 function MyApp({ Component, pageProps }) {

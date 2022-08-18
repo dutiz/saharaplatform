@@ -15,22 +15,21 @@ import { useRouter } from 'next/router'
 import { reset } from '../redux/cartSlice'
 import OrderDetail from '@/components/OrderDetail'
 
-export default function cart() {
-  const cart = useSelector((state) => state.cart);
-  const [open, setOpen] = useState(false);
-  const [cash, setCash] = useState(false);
+export default function Cart() {
+  const cart = useSelector((state) => state.cart)
+  const [open, setOpen] = useState(false)
+  const [cash, setCash] = useState(false)
   const amount = cart.total
   const currency = 'USD'
   const style = { layout: 'vertical' }
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch()
+  const router = useRouter()
 
   async function createOrder(data) {
-    console.log(data);
-     try {
+    try {
       const res = await axios.post('http://localhost:3000/api/orders', data)
-      if(res.status === 201){
-        dispatch(reset());
+      if (res.status === 201) {
+        dispatch(reset())
         router.push(`/orders/${res.data._id}`)
       }
     } catch (err) {
@@ -85,10 +84,10 @@ export default function cart() {
                 address: shipping.address.address_line_1,
                 total: cart.total,
                 method: 1,
-                orderedProducts: cart.products
+                orderedProducts: cart.products,
               })
             })
-          }}  
+          }}
         />
       </>
     )
@@ -160,7 +159,13 @@ export default function cart() {
             )}
           </div>
         </div>
-        {cash && <OrderDetail total={cart.total} orderedProducts={cart.products} createOrder={createOrder} />}
+        {cash && (
+          <OrderDetail
+            total={cart.total}
+            orderedProducts={cart.products}
+            createOrder={createOrder}
+          />
+        )}
       </div>
     </Layout>
   )

@@ -5,10 +5,10 @@ import Chart from 'react-google-charts'
 
 export const HistogramData = [
   ['Dinosaur', 'Length'],
-  ['Acrocanthosaurus (top-spined lizard)', 90],
-  ['Albertosaurus (Alberta lizard)', 102.2],
-  ['Allosaurus (other lizard)', 75],
-  ['Apatosaurus (deceptive lizard)',9],
+  ['Acrocanthosaurus (top-spined lizard)', 0.3],
+  ['Albertosaurus (Alberta lizard)', 0.9],
+  ['Allosaurus (other lizard)', 7.5],
+  ['Apatosaurus (deceptive lizard)', 0.9],
   ['Archaeopteryx (ancient wing)', 0.9],
   ['Argentinosaurus (Argentina lizard)', 36.6],
   ['Baryonyx (heavy claws)', 9.1],
@@ -51,9 +51,6 @@ export const HistogramOptions = {
     maxValue: 30,
   },
 }
-
-
-
 export const PieData = [
   ['Pizza', 'Popularity'],
   ['Pepperoni', 34],
@@ -61,7 +58,7 @@ export const PieData = [
   ['Mushroom', 22],
   ['Sausage', 10], // Below limit.
   ['Anchovies', 9], // Below limit.
-  ['PiePorch', 14]
+  ['PiePorch', 14],
 ]
 
 export const PieOptions = {
@@ -70,7 +67,6 @@ export const PieOptions = {
 }
 
 export default function index({ products, orders }) {
-  const timezoneOffset = new Date().getTimezoneOffset()
   return (
     <Admin title="Dashboard Admin - Next">
       <div className="row">
@@ -78,7 +74,6 @@ export default function index({ products, orders }) {
           <h3 className="text-xl font-semibold text-red-500">Dashboard</h3>
           <p className="mt-5">Welcome to Sahara Admin!</p>
         </div>
-        {console.log(orders)}
       </div>
       <div className="row mt-5">
         <div className="col-6">
@@ -113,13 +108,19 @@ export default function index({ products, orders }) {
           </div>
         </div>
         <div className="row">
-          <div className="col-6"></div>
           <div className="col-6">
-            <div className="row">
-              <div className="col-6"></div>
-            </div>
+            <p className="text-lg">Orders</p>
+            {orders.map((order) => (
+              <p key={order._id}>{order.customer}</p>
+            ))}
           </div>
         </div>
+      </div>
+      <div className="col-6">
+        <p className="text-lg">Products</p>
+        {products.map((product) => (
+          <p key={product._id}>{product.title}</p>
+        ))}
       </div>
     </Admin>
   )
@@ -135,14 +136,12 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-
-  const menuRes = await axios.get('http://localhost:3000/api/products')
   const menuOrders = await axios.get('http://localhost:3000/api/orders')
-
+  const menuProducts = await axios.get('http://localhost:3000/api/products')
   return {
     props: {
-      products: menuRes.data,
       orders: menuOrders.data,
+      products: menuProducts.data,
     },
   }
 }

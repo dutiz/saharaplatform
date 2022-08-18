@@ -6,43 +6,43 @@ import Button from '@/components/Button'
 import { useDispatch } from 'react-redux'
 import { addProduct } from 'redux/cartSlice'
 
-export default function Product({menu}) {
+export default function Product({ menu }) {
   const [price, setPrice] = useState(menu.prices[0])
   const [size, setSize] = useState(0)
   const [extras, setExtras] = useState([])
   const [quantity, setQuantity] = useState(1)
-  const disptach  = useDispatch()
+  const disptach = useDispatch()
 
   const changePrice = (number) => {
-    setPrice(price+number)
+    setPrice(price + number)
   }
 
   const handleSize = (sizeIndex) => {
-    const difference = menu.prices[sizeIndex] - menu.prices[size];
+    const difference = menu.prices[sizeIndex] - menu.prices[size]
     setSize(sizeIndex)
     changePrice(difference)
   }
-  const handleChange = (e,option) => {
-    const checked = e.target.checked;
+  const handleChange = (e, option) => {
+    const checked = e.target.checked
 
-    if(checked) {
+    if (checked) {
       changePrice(option.price)
-      setExtras((prev=>[...prev,option]))
-    }else{
+      setExtras((prev) => [...prev, option])
+    } else {
       changePrice(-option.price)
       setExtras(extras.filter((extra) => extra._id !== option._id))
     }
   }
-  
-  const handleClick = ()=>{
-    disptach(addProduct({...menu,extras,price,quantity}))
+
+  const handleClick = () => {
+    disptach(addProduct({ ...menu, extras, price, quantity }))
   }
   return (
     <Layout title={menu.title}>
       <div className="container">
         <div className="row mt-10">
           <div className="col-6">
-            <Image src={menu.img} width="524" height="519" />
+            <Image alt={menu.title} src={menu.img} width="524" height="519" />
           </div>
           <div className="col-6">
             <h1 className="text-5xl font-extrabold">{menu.title}</h1>
@@ -54,7 +54,7 @@ export default function Product({menu}) {
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute ${
-                    size===0 ? 'bg-orange-500' : 'bg-slate-500'
+                    size === 0 ? 'bg-orange-500' : 'bg-slate-500'
                   }  -top-1 -right-6 text-white text-xs py-1 rounded-lg`}
                 >
                   Small
@@ -64,7 +64,7 @@ export default function Product({menu}) {
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute -top-1 -right-7 ${
-                    size===1 ? 'bg-orange-500' : 'bg-slate-500'
+                    size === 1 ? 'bg-orange-500' : 'bg-slate-500'
                   } text-white text-xs py-1 rounded-lg`}
                 >
                   Medium
@@ -74,7 +74,7 @@ export default function Product({menu}) {
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute -top-1 -right-5 ${
-                    size===2 ? 'bg-orange-500' : 'bg-slate-500'
+                    size === 2 ? 'bg-orange-500' : 'bg-slate-500'
                   } text-white text-xs py-1 rounded-lg`}
                 >
                   Large
@@ -83,16 +83,22 @@ export default function Product({menu}) {
             </div>
             <h3 className="font-bold text-xl my-3">Choose additional ingredients</h3>
             <div className="flex flex-row space-x-2">
-            {menu.extraOptions.map((option) => (
-              <div className="flex flex-col" key={option._id}>
-              <div className="flex items-center font-medium">
-                <input type="checkbox" id={option.text} name={option.text} className="w-5 h-5" onChange={(e)=>handleChange(e,option)} />
-                <label htmlFor={option.text} className="ml-2">
-                  {option.text}
-                </label>
-              </div>
-            </div>
-            ))}
+              {menu.extraOptions.map((option) => (
+                <div className="flex flex-col" key={option._id}>
+                  <div className="flex items-center font-medium">
+                    <input
+                      type="checkbox"
+                      id={option.text}
+                      name={option.text}
+                      className="w-5 h-5"
+                      onChange={(e) => handleChange(e, option)}
+                    />
+                    <label htmlFor={option.text} className="ml-2">
+                      {option.text}
+                    </label>
+                  </div>
+                </div>
+              ))}
             </div>
             <input
               id="quantity"
@@ -102,7 +108,9 @@ export default function Product({menu}) {
               defaultValue={1}
               className=" border border-black rounded-lg mt-2 px-2 py-1 w-16"
             />
-            <Button className="ml-5" onClick={() => handleClick()}>Add To Cart</Button>
+            <Button className="ml-5" onClick={() => handleClick()}>
+              Add To Cart
+            </Button>
           </div>
         </div>
       </div>
@@ -110,11 +118,11 @@ export default function Product({menu}) {
   )
 }
 
-export async function getServerSideProps({params}) {
-  const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);
+export async function getServerSideProps({ params }) {
+  const res = await axios.get(`http://localhost:3000/api/products/${params.id}`)
   return {
     props: {
       menu: res.data,
-    }
+    },
   }
 }

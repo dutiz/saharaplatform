@@ -5,7 +5,7 @@ import Button from '@/components/Button'
 import Layout from '@/components/layout/Layout'
 import SVG from 'react-inlinesvg'
 
-export default function login() {
+export default function Login() {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
   const [error, setError] = useState(false)
@@ -45,6 +45,11 @@ export default function login() {
                 className="rounded-xl px-8 py-6 mt-5 w-4/5 placeholder:text-gray-500"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {error ? 
+                <p>Username or password is incorrect</p>
+                : 
+                <p>Login Successfully</p>
+              }
               <Button className="w-3/4 mt-5" onClick={() => handleClick()}>
                 Log In
               </Button>

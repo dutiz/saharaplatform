@@ -19,7 +19,6 @@ export default function HeaderSection() {
             <Button islink className="mt-4" href="/menu">
               Our Menu
             </Button>
-            
           </div>
         </div>
       </div>
