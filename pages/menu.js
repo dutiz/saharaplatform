@@ -15,7 +15,7 @@ export default function menu({ menuList }) {
           </div>
           <div className="row">
             {menuList.map((menu) => (
-              <MenuItem key="menu._id" menu={menu} />
+              <MenuItem key={menu._id} menu={menu} href={`/products/${menu._id}`} />
             ))}
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function MenuSection({ menuList }) {
         </div>
         <div className="row">
           {menuList.slice(0, 6).map((menu) => (
-            <MenuItem key={menu._id} menu={menu} />
+            <MenuItem key={menu._id} menu={menu} href={`/products/${menu._id}`} />
           ))}
         </div>
         <div className="row">
