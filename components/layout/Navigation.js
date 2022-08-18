@@ -50,7 +50,7 @@ export default function Navigation() {
             </ul>
           </div>
           <div className="md:col-4 md:flex items-center justify-end">
-            <div className='relative mr-5'>
+            <div className="relative mr-5">
               <Link href="/cart" passHref>
                 <a className="">
                   <SVG src="../svg/cart.svg" className=" fill-current w-9 h-9 " />

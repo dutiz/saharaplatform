@@ -4,10 +4,9 @@ import Image from 'next/image'
 import React from 'react'
 import { useState } from 'react'
 
-export default function products({ products }) {
+export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   async function handleDelete(id) {
-    console.log(id)
     try {
       const res = await axios.delete('http://localhost:3000/api/products/' + id)
       setMenuList(menuList.filter((menu) => menu._id !== id))
@@ -40,7 +39,13 @@ export default function products({ products }) {
                     </span>
                   </td>
                   <td>
-                    <Image alt={product.title} src={product.img} width={100} height={100} priority />
+                    <Image
+                      alt={product.title}
+                      src={product.img}
+                      width={100}
+                      height={100}
+                      priority
+                    />
                   </td>
                   <td>{product.title}</td>
 

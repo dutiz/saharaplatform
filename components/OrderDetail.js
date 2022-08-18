@@ -1,22 +1,22 @@
-import {useState} from "react"
+import { useState } from 'react'
 
-export default function OrderDetail({total, orderedProducts , createOrder}) {
-   const [customer, setCustomer] = useState('')
-   const [address, setAddress] = useState('')
-   function handleClick() {
-     createOrder({ customer, address, total, method: 0 , orderedProducts,})
-   }
+export default function OrderDetail({ total, orderedProducts, createOrder }) {
+  const [customer, setCustomer] = useState('')
+  const [address, setAddress] = useState('')
+  function handleClick() {
+    createOrder({ customer, address, total, method: 0, orderedProducts })
+  }
   return (
-    <div style={{zIndex: 999}}
+    <div
+      style={{ zIndex: 999 }}
       className="bg-gray-500 w-full h-screen absolute top-0 left-0 flex items-center justify-center "
     >
       <div
-        style={{width: 500}}
+        style={{ width: 500 }}
         className="bg-white rounded-2xl p-12 flex flex-col items-center justify-center"
       >
-        
         <h1 className="font-bold">You will pay ${total} after delivery.</h1>
-        {orderedProducts.map((product) =>(
+        {orderedProducts.map((product) => (
           <p key={product._id}>$ {product.price}</p>
         ))}
         <div className="flex flex-col w-full mb-4">
@@ -42,7 +42,10 @@ export default function OrderDetail({total, orderedProducts , createOrder}) {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <button className="border-none px-2 py-5 text-lg rounded-lg cursor-pointer bg-teal-500" onClick={() => handleClick()}>
+        <button
+          className="border-none px-2 py-5 text-lg rounded-lg cursor-pointer bg-teal-500"
+          onClick={() => handleClick()}
+        >
           Order
         </button>
       </div>

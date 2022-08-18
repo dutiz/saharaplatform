@@ -17,9 +17,7 @@ export default function Orders({ orders }) {
         status: currentStatus + 1,
       })
       setOrderList([res.data, ...orderList.filter((order) => order._id !== id)])
-    } catch (err) {
-      console.log(err)
-    }
+    } catch (err) {}
   }
   return (
     <Admin>

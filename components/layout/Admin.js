@@ -21,14 +21,16 @@ export default function Admin({ children, title = null }) {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className={`font-sans antialiased container-fluid flex flex-col ${dev ? 'debug-screens' : ''}`}>
+      <div
+        className={`font-sans antialiased container-fluid flex flex-col ${
+          dev ? 'debug-screens' : ''
+        }`}
+      >
         <div className="row">
           <div className="col-4">
-            <AdminNavigation/> 
+            <AdminNavigation />
           </div>
-          <div className="col-8 mt-10">
-            {children}
-          </div>
+          <div className="col-8 mt-10">{children}</div>
         </div>
       </div>
     </>

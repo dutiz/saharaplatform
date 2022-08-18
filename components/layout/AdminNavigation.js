@@ -1,8 +1,7 @@
-import Link from "next/link"
-import { useState } from 'react'
+import Link from 'next/link'
 import SVG from 'react-inlinesvg'
 
-const AdminNavItem = ({ children ,href }) => {
+const AdminNavItem = ({ children, href }) => {
   return (
     <li>
       <Link href={`/admin${href}`}>
@@ -18,23 +17,15 @@ const AdminNavItem = ({ children ,href }) => {
 }
 
 export default function AdminNavigation() {
-  const [menu, setMenu] = useState(false)
-
   return (
     <aside className="flex flex-col w-full bg-gray-200 rounded-r-3xl overflow-hidden h-screen">
       <div className="flex items-center justify-center py-7 shadow-md">
         <SVG src="/svg/logo.svg" className="w-20 h-20" />
       </div>
       <ul className="flex flex-col py-4">
-        <AdminNavItem href="/">
-          Home
-        </AdminNavItem>
-        <AdminNavItem href="/orders">
-          Orders
-        </AdminNavItem>
-        <AdminNavItem href="/products" >
-          Products
-        </AdminNavItem>
+        <AdminNavItem href="/">Home</AdminNavItem>
+        <AdminNavItem href="/orders">Orders</AdminNavItem>
+        <AdminNavItem href="/products">Products</AdminNavItem>
       </ul>
     </aside>
   )
