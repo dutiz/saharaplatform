@@ -1,6 +1,5 @@
-import React from 'react'
-import ServiceItem from '../ServiceItem'
 import site from '../../content/site'
+import ServiceItem from '../ServiceItem'
 
 export default function ServiceSection() {
   return (

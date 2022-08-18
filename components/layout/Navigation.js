@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { useSelector } from 'react-redux/'
 import SVG from 'react-inlinesvg'
+import { useSelector } from 'react-redux/'
+
 import Button from '../Button'
 
 const NavItem = ({ children, href }) => {

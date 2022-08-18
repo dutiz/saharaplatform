@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import Button from './Button'
 import Link from 'next/link'
+
+import Button from './Button'
 
 export default function MenuItem({ menu, href }) {
   return (

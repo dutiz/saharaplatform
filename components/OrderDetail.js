@@ -20,8 +20,11 @@ export default function OrderDetail({ total, orderedProducts, createOrder }) {
           <p key={product._id}>$ {product.price}</p>
         ))}
         <div className="flex flex-col w-full mb-4">
-          <label className="mb-2">Name Surname</label>
+          <label htmlFor="fullName" className="mb-2">
+            Name Surname
+          </label>
           <input
+            id="fullName"
             placeholder="John Doe"
             type="text"
             className="h-10 p-2"
@@ -29,12 +32,17 @@ export default function OrderDetail({ total, orderedProducts, createOrder }) {
           />
         </div>
         <div className="flex flex-col w-full mb-4">
-          <label className="mb-2">Phone Number</label>
-          <input type="text" placeholder="+1 234 567 89" className="h-10 p-2" />
+          <label htmlFor="phoneNumber" className="mb-2">
+            Phone Number
+          </label>
+          <input id="phoneNumber" type="text" placeholder="+1 234 567 89" className="h-10 p-2" />
         </div>
         <div className="flex flex-col w-full mb-4">
-          <label className="mb-2">Address</label>
+          <label htmlFor="address" className="mb-2">
+            Address
+          </label>
           <textarea
+            id="address "
             rows={5}
             placeholder="Elton St. 505 NY"
             type="text"

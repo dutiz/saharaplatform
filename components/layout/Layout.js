@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+
 import FooterSection from '../sections/FooterSection'
 
 const Navigation = dynamic(() => import('@/components/layout/Navigation'), { ssr: false })
