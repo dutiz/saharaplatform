@@ -1,0 +1,19 @@
+{
+    "services": [
+      {
+        "title": "Fast Food",
+        "svg": "./svg/fastfood.svg",
+        "description": "Making a reservation at Délicious restaurant is easy and takes just a couple of minutes."
+      },
+      {
+        "title": "Healthy Meal",
+        "svg": "./svg/healthy.svg",
+        "description": "Making a reservation at Délicious restaurant is easy and takes just a couple of minutes."
+      },
+      {
+        "title": "Delicous Caffe",
+        "svg": "./svg/coffe.svg",
+        "description": "Making a reservation at Délicious restaurant is easy and takes just a couple of minutes."
+      }
+    ]
+}

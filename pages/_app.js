@@ -1,6 +1,10 @@
 import '../styles/globals.css'
-import '@fontsource/poppins/500.css'
-import '@fontsource/poppins/700.css'
+import '@fontsource/mulish/500.css'
+import '@fontsource/mulish/700.css'
+import '@fontsource/mulish/800.css'
+
+import store from 'redux/store'
+import { Provider } from 'react-redux'
 
 import { DefaultSeo } from 'next-seo'
 
@@ -12,11 +16,13 @@ function MyApp({ Component, pageProps }) {
           type: 'website',
           locale: 'en_EN',
           url: '',
-          site_name: 'Next Starter',
-          description: 'Website description here',
+          site_name: 'Sahara Platform',
+          description: 'Best way to eat healthy',
         }}
       />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   )
 }
