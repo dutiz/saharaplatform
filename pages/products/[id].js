@@ -1,10 +1,11 @@
 import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
-import Layout from '@/components/layout/Layout'
-import Button from '@/components/Button'
 import { useDispatch } from 'react-redux'
 import { addProduct } from 'redux/cartSlice'
+
+import Button from '@/components/Button'
+import Layout from '@/components/layout/Layout'
 
 export default function Product({ menu }) {
   const [price, setPrice] = useState(menu.prices[0])
@@ -13,16 +14,16 @@ export default function Product({ menu }) {
   const [quantity, setQuantity] = useState(1)
   const disptach = useDispatch()
 
-  const changePrice = (number) => {
+  function changePrice(number) {
     setPrice(price + number)
   }
 
-  const handleSize = (sizeIndex) => {
+  function handleSize(sizeIndex) {
     const difference = menu.prices[sizeIndex] - menu.prices[size]
     setSize(sizeIndex)
     changePrice(difference)
   }
-  const handleChange = (e, option) => {
+  function handleChange(e, option) {
     const checked = e.target.checked
 
     if (checked) {
@@ -34,7 +35,7 @@ export default function Product({ menu }) {
     }
   }
 
-  const handleClick = () => {
+  function handleClick() {
     disptach(addProduct({ ...menu, extras, price, quantity }))
   }
   return (
@@ -50,7 +51,11 @@ export default function Product({ menu }) {
             <p className="text-2xl font-semibold">${price}</p>
             <h3 className="font-bold text-xl my-3">Chose the size</h3>
             <div className="w-2/5 flex justify-between">
-              <div className="w-7 h-7 relative cursor-pointer" onClick={() => handleSize(0)}>
+              <div
+                className="w-7 h-7 relative cursor-pointer"
+                aria-hidden="true"
+                onClick={() => handleSize(0)}
+              >
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute ${
@@ -60,7 +65,11 @@ export default function Product({ menu }) {
                   Small
                 </span>
               </div>
-              <div className="w-10 h-10 relative cursor-pointer" onClick={() => handleSize(1)}>
+              <div
+                className="w-10 h-10 relative cursor-pointer"
+                aria-hidden="true"
+                onClick={() => handleSize(1)}
+              >
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute -top-1 -right-7 ${
@@ -70,7 +79,11 @@ export default function Product({ menu }) {
                   Medium
                 </span>
               </div>
-              <div className="w-12 h-12 relative cursor-pointer" onClick={() => handleSize(2)}>
+              <div
+                className="w-12 h-12 relative cursor-pointer"
+                aria-hidden="true"
+                onClick={() => handleSize(2)}
+              >
                 <Image src="/images/size.png" layout="fill" alt="size" />
                 <span
                   className={`absolute -top-1 -right-5 ${
@@ -119,7 +132,7 @@ export default function Product({ menu }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(`http://localhost:3000/api/products/${params.id}`)
+  const res = await axios.get(`http://sahara-food.netlify.app/api/products/${params.id}`)
   return {
     props: {
       menu: res.data,

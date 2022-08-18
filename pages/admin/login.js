@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import SVG from 'react-inlinesvg'
+
 import Button from '@/components/Button'
 import Layout from '@/components/layout/Layout'
-import SVG from 'react-inlinesvg'
 
 export default function Login() {
   const [username, setUsername] = useState(null)
@@ -13,7 +14,7 @@ export default function Login() {
 
   const handleClick = async () => {
     try {
-      await axios.post('http://localhost:3000/api/login', {
+      await axios.post('http://sahara-food.netlify.app/api/login', {
         username,
         password,
       })

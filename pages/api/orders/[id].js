@@ -1,4 +1,5 @@
 import dbConnect from 'utils/mongo'
+
 import Order from '../../../models/Order'
 
 export default async function handler(req, res) {
@@ -25,7 +26,5 @@ export default async function handler(req, res) {
     } catch (err) {
       res.status(500).json(err)
     }
-  }
-  if (method === 'DELETE') {
   }
 }

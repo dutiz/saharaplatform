@@ -1,7 +1,8 @@
-import DashboardCart from '@/components/DashboardCart'
-import Admin from '@/components/layout/Admin'
 import axios from 'axios'
 import Chart from 'react-google-charts'
+
+import DashboardCart from '@/components/DashboardCart'
+import Admin from '@/components/layout/Admin'
 
 export const HistogramData = [
   ['Dinosaur', 'Length'],
@@ -136,8 +137,8 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const menuOrders = await axios.get('http://localhost:3000/api/orders')
-  const menuProducts = await axios.get('http://localhost:3000/api/products')
+  const menuOrders = await axios.get('http://sahara-food.netlify.app/api/orders')
+  const menuProducts = await axios.get('http://sahara-food.netlify.app/api/products')
   return {
     props: {
       orders: menuOrders.data,

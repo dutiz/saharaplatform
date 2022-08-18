@@ -1,16 +1,21 @@
-import Admin from '@/components/layout/Admin'
 import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 import { useState } from 'react'
 
+import Admin from '@/components/layout/Admin'
+
 export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   async function handleDelete(id) {
     try {
-      const res = await axios.delete('http://localhost:3000/api/products/' + id)
+      await axios.delete('http://sahara-food.netlify.app/api/products/' + id)
+
       setMenuList(menuList.filter((menu) => menu._id !== id))
-    } catch (err) {}
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
+    }
   }
   return (
     <Admin>
@@ -82,7 +87,7 @@ export async function getServerSideProps(ctx) {
     }
   }
 
-  const menuRes = await axios.get('http://localhost:3000/api/products')
+  const menuRes = await axios.get('http://sahara-food.netlify.app/api/products')
 
   return {
     props: {

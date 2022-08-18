@@ -3,9 +3,9 @@ import '@fontsource/mulish/500.css'
 import '@fontsource/mulish/700.css'
 import '@fontsource/mulish/800.css'
 
-import store from 'redux/store'
-import { Provider } from 'react-redux'
 import { DefaultSeo } from 'next-seo'
+import { Provider } from 'react-redux'
+import store from 'redux/store'
 
 function MyApp({ Component, pageProps }) {
   return (

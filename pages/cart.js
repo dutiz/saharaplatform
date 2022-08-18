@@ -1,19 +1,21 @@
-import Layout from '@/components/layout/Layout'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import SVG from 'react-inlinesvg'
-import Button from '@/components/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import {
-  PayPalScriptProvider,
   PayPalButtons,
+  PayPalScriptProvider,
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js'
 import axios from 'axios'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { reset } from '../redux/cartSlice'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import SVG from 'react-inlinesvg'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Button from '@/components/Button'
+import Layout from '@/components/layout/Layout'
 import OrderDetail from '@/components/OrderDetail'
+
+import { reset } from '../redux/cartSlice'
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart)
@@ -27,12 +29,13 @@ export default function Cart() {
 
   async function createOrder(data) {
     try {
-      const res = await axios.post('http://localhost:3000/api/orders', data)
+      const res = await axios.post('http://sahara-food.netlify.app/api/orders', data)
       if (res.status === 201) {
         dispatch(reset())
         router.push(`/orders/${res.data._id}`)
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err)
     }
   }
@@ -50,7 +53,7 @@ export default function Cart() {
           currency: currency,
         },
       })
-    }, [currency, showSpinner])
+    }, [currency, dispatch, options, showSpinner])
     return (
       <>
         {showSpinner && isPending && <div className="spinner" />}
@@ -110,7 +113,7 @@ export default function Cart() {
                 {cart.products.map((product) => (
                   <tr key={product._id}>
                     <td className="py-4 flex items-center">
-                      <Image src={product.img} width="150" height="150" />
+                      <Image alt={product.title} src={product.img} width="150" height="150" />
                       <p className="ml-6 text-3xl">{product.title}</p>
                     </td>
                     <td className="px-6">
@@ -124,7 +127,7 @@ export default function Cart() {
                       $ {product.price * product.quantity}
                     </td>
                     <td>
-                      <button onClick={() => console.log('delete')}>
+                      <button>
                         <SVG src="/svg/bin.svg" className="w-8 h-8 mr-3" />
                       </button>
                     </td>

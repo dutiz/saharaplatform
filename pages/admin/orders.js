@@ -1,8 +1,9 @@
-import Admin from '@/components/layout/Admin'
 import axios from 'axios'
 import Link from 'next/link'
 import React from 'react'
 import { useState } from 'react'
+
+import Admin from '@/components/layout/Admin'
 
 export default function Orders({ orders }) {
   const [orderList, setOrderList] = useState(orders)
@@ -13,11 +14,14 @@ export default function Orders({ orders }) {
     const currentStatus = item.status
 
     try {
-      const res = await axios.put('http://localhost:3000/api/orders/' + id, {
+      const res = await axios.put('http://sahara-food.netlify.app/api/orders/' + id, {
         status: currentStatus + 1,
       })
       setOrderList([res.data, ...orderList.filter((order) => order._id !== id)])
-    } catch (err) {}
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
+    }
   }
   return (
     <Admin>
@@ -78,7 +82,7 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const ordersRes = await axios.get('http://localhost:3000/api/orders')
+  const ordersRes = await axios.get('http://sahara-food.netlify.app/api/orders')
 
   return {
     props: {
