@@ -3,12 +3,15 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Layout from '@/components/layout/Layout'
 import Button from '@/components/Button'
+import { useDispatch } from 'react-redux'
+import { addProduct } from 'redux/cartSlice'
 
 export default function Product({menu}) {
   const [price, setPrice] = useState(menu.prices[0])
   const [size, setSize] = useState(0)
   const [extras, setExtras] = useState([])
   const [quantity, setQuantity] = useState(1)
+  const disptach  = useDispatch()
 
   const changePrice = (number) => {
     setPrice(price+number)
@@ -29,6 +32,10 @@ export default function Product({menu}) {
       changePrice(-option.price)
       setExtras(extras.filter((extra) => extra._id !== option._id))
     }
+  }
+  
+  const handleClick = ()=>{
+    disptach(addProduct({...menu,extras,price,quantity}))
   }
   return (
     <Layout title={menu.title}>
@@ -95,7 +102,7 @@ export default function Product({menu}) {
               defaultValue={1}
               className=" border border-black rounded-lg mt-2 px-2 py-1 w-16"
             />
-            <Button className="ml-5">Add To Cart</Button>
+            <Button className="ml-5" onClick={() => handleClick()}>Add To Cart</Button>
           </div>
         </div>
       </div>
