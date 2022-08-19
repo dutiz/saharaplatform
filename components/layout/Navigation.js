@@ -45,7 +45,6 @@ export default function Navigation() {
           <div className={`md:col-4 md:flex justify-center ${menu ? ' flex' : ' hidden'}`}>
             <ul className="flex w-full p-5 flex-col md:w-auto md:p-0 md:flex-row items-center">
               <NavItem href="/">Home</NavItem>
-              <NavItem href="/about">About</NavItem>
               <NavItem href="/menu">Menu</NavItem>
               <NavItem href="/admin">Admin</NavItem>
             </ul>
