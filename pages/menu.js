@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import Layout from '@/components/layout/Layout'
 import MenuItem from '@/components/MenuItem'
 
@@ -25,10 +23,11 @@ export default function menu({ menuList }) {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get('https://sahara-food.netlify.app/api/products')
+  const res = await fetch('https://sahara-food.netlify.app/api/products')
+  const data = await res.json()
   return {
     props: {
-      menuList: res.data,
+      menuList: data,
     },
   }
 }

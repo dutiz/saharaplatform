@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Image from 'next/image'
 
 import Layout from '@/components/layout/Layout'
@@ -155,8 +154,9 @@ export default function Order({ order }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(`https://sahara-food.netlify.app/api/orders/${params.id}`)
+  const res = await fetch(`https://sahara-food.netlify.app/api/orders/${params.id}`)
+  const data = await res.json()
   return {
-    props: { order: res.data },
+    props: { order: data },
   }
 }
