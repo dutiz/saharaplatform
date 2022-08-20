@@ -1,3 +1,5 @@
+import dbConnect from 'utils/mongo'
+
 import HeaderSection from '@/components/sections/HeaderSection'
 import MenuSection from '@/components/sections/MenuSection'
 import ServiceSection from '@/components/sections/ServiceSection'
@@ -17,7 +19,8 @@ export default function Home({ menuList }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('https://sahara-food.netlify.app/api/products')
+  await dbConnect()
+  const res = await fetch('http://localhost:3000/api/products')
   const data = await res.json()
   return {
     props: {
