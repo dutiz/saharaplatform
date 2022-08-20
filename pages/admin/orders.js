@@ -82,11 +82,12 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const ordersRes = await axios.get('http://sahara-food.netlify.app/api/orders')
+  const ordersRes = await fetch('http://sahara-food.netlify.app/api/orders')
+  const data = await ordersRes.json()
 
   return {
     props: {
-      orders: ordersRes.data,
+      orders: data,
     },
   }
 }

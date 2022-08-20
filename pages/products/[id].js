@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -132,10 +131,11 @@ export default function Product({ menu }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(`http://sahara-food.netlify.app/api/products/${params.id}`)
+  const res = await fetch(`http://sahara-food.netlify.app/api/products/${params.id}`)
+  const data = await res.json()
   return {
     props: {
-      menu: res.data,
+      menu: data,
     },
   }
 }
