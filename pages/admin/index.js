@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Chart from 'react-google-charts'
 
 import DashboardCart from '@/components/DashboardCart'
@@ -136,16 +137,13 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const menuOrders = await fetch('http://sahara-food.netlify.app/api/orders')
-  const menuProducts = await fetch('http://sahara-food.netlify.app/api/products')
-
-  const ordersData = await menuOrders.json()
-  const productsData = await menuProducts.json()
+  const menuOrders = await axios.get('https://sahara-food.netlify.app/api/orders')
+  const menuProducts = await axios.get('https://sahara-food.netlify.app/api/products')
 
   return {
     props: {
-      orders: ordersData,
-      products: productsData,
+      orders: menuOrders.data,
+      products: menuProducts.data,
     },
   }
 }

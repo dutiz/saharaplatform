@@ -20,7 +20,7 @@ export default function Cart() {
 
   async function createOrder(data) {
     try {
-      const res = await axios.post('http://sahara-food.netlify.app/api/orders', data)
+      const res = await axios.post('https://sahara-food.netlify.app/api/orders', data)
       if (res.status === 201) {
         dispatch(reset())
         router.push(`/orders/${res.data._id}`)

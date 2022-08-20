@@ -9,7 +9,7 @@ export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   async function handleDelete(id) {
     try {
-      await axios.delete('http://sahara-food.netlify.app/api/products/' + id)
+      await axios.delete('https://sahara-food.netlify.app/api/products/' + id)
 
       setMenuList(menuList.filter((menu) => menu._id !== id))
     } catch (err) {
@@ -87,12 +87,11 @@ export async function getServerSideProps(ctx) {
     }
   }
 
-  const menuRes = await fetch('http://sahara-food.netlify.app/api/products')
-  const data = await menuRes.json()
+  const menuRes = await axios.get('https://sahara-food.netlify.app/api/products')
 
   return {
     props: {
-      products: data,
+      products: menuRes.data,
     },
   }
 }
