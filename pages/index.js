@@ -20,7 +20,7 @@ export default function Home({ menuList }) {
 
 export async function getServerSideProps() {
   await dbConnect()
-  const res = await fetch('http://localhost:3000/api/products')
+  const res = await fetch('https://sahara-food.netlify.app/api/products')
   const data = await res.json()
   return {
     props: {
