@@ -13,7 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@fontsource/mulish": "^4.5.7",
+    "@fontsource/mulish": "^4.5.12",
     "@fontsource/ropa-sans": "^4.5.9",
     "@paypal/react-paypal-js": "^7.8.1",
     "@reduxjs/toolkit": "^1.8.3",
