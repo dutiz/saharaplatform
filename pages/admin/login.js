@@ -12,9 +12,9 @@ export default function Login() {
   const [error, setError] = useState(false)
   const router = useRouter()
 
-  const handleClick = async () => {
+  async function handleClick() {
     try {
-      await axios.post('https://sahara-food.netlify.app/api/login', {
+      await axios.post('http://localhost:3000/api/login', {
         username,
         password,
       })
@@ -46,10 +46,14 @@ export default function Login() {
                 className="rounded-xl px-8 py-6 mt-5 w-4/5 placeholder:text-gray-500"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {error ? <p>Username or password is incorrect</p> : <p>Login Successfully</p>}
               <Button className="w-3/4 mt-5" onClick={() => handleClick()}>
                 Log In
               </Button>
+              {error ? (
+                <p className="mt-5">Username or password is incorrect</p>
+              ) : (
+                <p className="mt-5"></p>
+              )}
             </div>
           </div>
         </div>

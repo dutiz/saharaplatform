@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Link from 'next/link'
+import Router from 'next/router'
 import React from 'react'
 import { useState } from 'react'
 
@@ -14,7 +15,7 @@ export default function Orders({ orders }) {
     const currentStatus = item.status
 
     try {
-      const res = await axios.put('https://sahara-food.netlify.app/api/orders/' + id, {
+      const res = await axios.put('http://localhost:3000/api/orders/' + id, {
         status: currentStatus + 1,
       })
       setOrderList([res.data, ...orderList.filter((order) => order._id !== id)])
@@ -22,6 +23,7 @@ export default function Orders({ orders }) {
       // eslint-disable-next-line no-console
       console.log(err)
     }
+    Router.reload()
   }
   return (
     <Admin>
@@ -82,12 +84,11 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const ordersRes = await fetch('https://sahara-food.netlify.app/api/orders')
-  const data = await ordersRes.json()
+  const ordersRes = await axios.get('https://sahara-food.netlify.app/api/orders')
 
   return {
     props: {
-      orders: data,
+      orders: ordersRes.data,
     },
   }
 }

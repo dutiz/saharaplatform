@@ -1,4 +1,6 @@
+import axios from 'axios'
 import Image from 'next/image'
+import dbConnect from 'utils/mongo'
 
 import Layout from '@/components/layout/Layout'
 
@@ -154,9 +156,9 @@ export default function Order({ order }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://sahara-food.netlify.app/api/orders/${params.id}`)
-  const data = await res.json()
+  await dbConnect()
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`)
   return {
-    props: { order: data },
+    props: { order: res.data },
   }
 }

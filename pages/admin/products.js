@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Image from 'next/image'
-import React from 'react'
+import Router from 'next/router'
 import { useState } from 'react'
 
 import Admin from '@/components/layout/Admin'
@@ -9,13 +9,14 @@ export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   async function handleDelete(id) {
     try {
-      await axios.delete('https://sahara-food.netlify.app/api/products/' + id)
+      await axios.delete('https://localhost:3000/api/products/' + id)
 
       setMenuList(menuList.filter((menu) => menu._id !== id))
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log(err)
     }
+    Router.reload()
   }
   return (
     <Admin>
@@ -87,12 +88,11 @@ export async function getServerSideProps(ctx) {
     }
   }
 
-  const menuRes = await fetch('https://sahara-food.netlify.app/api/products')
-  const data = await menuRes.json()
+  const menuRes = await axios.get('https://sahara-food.netlify.app/api/products')
 
   return {
     props: {
-      products: data,
+      products: menuRes.data,
     },
   }
 }

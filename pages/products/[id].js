@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -131,11 +132,18 @@ export default function Product({ menu }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://sahara-food.netlify.app/api/products/${params.id}`)
-  const data = await res.json()
-  return {
-    props: {
-      menu: data,
-    },
+  try {
+    const res = await axios.get(`https://sahara-food.netlify.app/api/products/${params.id}`)
+    return {
+      props: {
+        menu: res.data,
+      },
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    return {
+      notFound: true,
+    }
   }
 }

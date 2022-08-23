@@ -1,7 +1,6 @@
-import dynamic from 'next/dynamic'
 import Head from 'next/head'
 
-const AdminNavigation = dynamic(() => import('@/components/layout/AdminNavigation'), { ssr: false })
+import AdminNavigation from './AdminNavigation'
 
 export default function Admin({ children, title = null }) {
   const dev = process.env.NODE_ENV === 'development'

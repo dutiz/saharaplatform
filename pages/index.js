@@ -1,3 +1,4 @@
+import Product from 'models/Product'
 import dbConnect from 'utils/mongo'
 
 import HeaderSection from '@/components/sections/HeaderSection'
@@ -19,12 +20,19 @@ export default function Home({ menuList }) {
 }
 
 export async function getServerSideProps() {
-  await dbConnect()
-  const res = await fetch('https://sahara-food.netlify.app/api/products')
-  const data = await res.json()
-  return {
-    props: {
-      menuList: data,
-    },
+  try {
+    await dbConnect()
+    const res = await Product.find()
+    return {
+      props: {
+        menuList: JSON.parse(JSON.stringify(res)),
+      },
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    return {
+      notFound: true,
+    }
   }
 }
