@@ -9,7 +9,7 @@ export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   async function handleDelete(id) {
     try {
-      await axios.delete('https://localhost:3000/api/products/' + id)
+      await axios.delete('https://sahara-food.netlify.app/api/products/' + id)
 
       setMenuList(menuList.filter((menu) => menu._id !== id))
     } catch (err) {

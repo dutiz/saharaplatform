@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addProduct } from 'redux/cartSlice'
+import dbConnect from 'utils/mongo'
 
 import Button from '@/components/Button'
 import Layout from '@/components/layout/Layout'
@@ -133,6 +134,7 @@ export default function Product({ menu }) {
 
 export async function getServerSideProps({ params }) {
   try {
+    await dbConnect()
     const res = await axios.get(`https://sahara-food.netlify.app/api/products/${params.id}`)
     return {
       props: {

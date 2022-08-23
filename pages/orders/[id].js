@@ -156,9 +156,19 @@ export default function Order({ order }) {
 }
 
 export async function getServerSideProps({ params }) {
-  await dbConnect()
-  const res = await axios.get(`https://sahara-food.netlify.app/api/orders/${params.id}`)
-  return {
-    props: { order: res.data },
+  try {
+    await dbConnect()
+    const res = await axios.get(`https://sahara-food.netlify.app/api/orders/${params.id}`)
+    return {
+      props: {
+        order: res.data,
+      },
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    return {
+      notFound: true,
+    }
   }
 }
