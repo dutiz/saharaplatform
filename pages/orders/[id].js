@@ -157,7 +157,7 @@ export default function Order({ order }) {
 
 export async function getServerSideProps({ params }) {
   await dbConnect()
-  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`)
+  const res = await axios.get(`https://sahara-food.netlify.app/api/orders/${params.id}`)
   return {
     props: { order: res.data },
   }
