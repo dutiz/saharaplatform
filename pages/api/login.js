@@ -1,6 +1,6 @@
 import cookie from 'cookie'
 
-const handler = (req, res) => {
+function handler(req, res) {
   if (req.method === 'POST') {
     const { username, password } = req.body
     if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
