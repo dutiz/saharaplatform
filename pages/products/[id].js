@@ -8,8 +8,8 @@ import dbConnect from 'utils/mongo'
 import Button from '@/components/Button'
 import Layout from '@/components/layout/Layout'
 
-export default function Product({ menu }) {
-  const [price, setPrice] = useState(menu.prices[0])
+export default function Product({ product }) {
+  const [price, setPrice] = useState(product.prices[0])
   const [size, setSize] = useState(0)
   const [extras, setExtras] = useState([])
   const [quantity, setQuantity] = useState(1)
@@ -20,7 +20,7 @@ export default function Product({ menu }) {
   }
 
   function handleSize(sizeIndex) {
-    const difference = menu.prices[sizeIndex] - menu.prices[size]
+    const difference = product.prices[sizeIndex] - product.prices[size]
     setSize(sizeIndex)
     changePrice(difference)
   }
@@ -37,18 +37,18 @@ export default function Product({ menu }) {
   }
 
   function handleClick() {
-    disptach(addProduct({ ...menu, extras, price, quantity }))
+    disptach(addProduct({ ...product, extras, price, quantity }))
   }
   return (
-    <Layout title={menu.title}>
+    <Layout title={product.title}>
       <div className="container">
         <div className="row mt-10">
           <div className="col-6">
-            <Image alt={menu.title} src={menu.img} width="524" height="519" />
+            <Image alt={product.title} src={product.img} width="524" height="519" />
           </div>
           <div className="col-6">
-            <h1 className="text-5xl font-extrabold">{menu.title}</h1>
-            <p className="mt-5">{menu.desc}</p>
+            <h1 className="text-5xl font-extrabold">{product.title}</h1>
+            <p className="mt-5">{product.desc}</p>
             <p className="text-2xl font-semibold">${price}</p>
             <h3 className="font-bold text-xl my-3">Chose the size</h3>
             <div className="w-2/5 flex justify-between">
@@ -97,7 +97,7 @@ export default function Product({ menu }) {
             </div>
             <h3 className="font-bold text-xl my-3">Choose additional ingredients</h3>
             <div className="flex flex-row space-x-2">
-              {menu.extraOptions.map((option) => (
+              {product.extraOptions.map((option) => (
                 <div className="flex flex-col" key={option._id}>
                   <div className="flex items-center font-medium">
                     <input
@@ -138,7 +138,7 @@ export async function getServerSideProps({ params }) {
     const res = await axios.get(`https://sahara-food.netlify.app/api/products/${params.id}`)
     return {
       props: {
-        menu: res.data,
+        product: res.data,
       },
     }
   } catch (error) {
