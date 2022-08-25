@@ -9,7 +9,7 @@ function handler(req, res) {
         cookie.serialize('token', process.env.TOKEN, {
           maxAge: 60 * 60,
           sameSite: 'strict',
-          path: '/admin',
+          path: '/',
         })
       )
       res.status(200).json('Succesfull')
