@@ -137,8 +137,8 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const menuOrders = await axios.get('https://sahara-food.netlify.app/api/orders')
-  const menuProducts = await axios.get('https://sahara-food.netlify.app/api/products')
+  const menuOrders = await axios.get('http://localhost:3000/api/orders')
+  const menuProducts = await axios.get('http://localhost:3000/api/products')
 
   return {
     props: {
