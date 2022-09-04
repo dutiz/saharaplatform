@@ -3,10 +3,13 @@ import Image from 'next/image'
 import Router from 'next/router'
 import { useState } from 'react'
 
+import Add from '@/components/Add'
 import Admin from '@/components/layout/Admin'
 
 export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
+  const [close, setClose] = useState(true)
+
   async function handleDelete(id) {
     try {
       await axios.delete('http://localhost:3000/api/products/' + id)
@@ -23,6 +26,8 @@ export default function Products({ products }) {
       <div className="row">
         <div className="col-12">
           <h1 className="text-4xl font-semibold">Products</h1>
+          <button onClick={() => setClose(false)}>Add Products</button>
+          {!close && <Add setClose={setClose} />}
           <table>
             <thead>
               <tr>
