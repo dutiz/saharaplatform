@@ -5,10 +5,12 @@ import { useState } from 'react'
 
 import Add from '@/components/Add'
 import Admin from '@/components/layout/Admin'
+import ProductEdit from '@/components/ProductEdit'
 
 export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   const [close, setClose] = useState(true)
+  const [edit, setEdit] = useState(false)
 
   async function handleDelete(id) {
     try {
@@ -59,18 +61,20 @@ export default function Products({ products }) {
                     />
                   </td>
                   <td>{product.title}</td>
-
                   <td>
                     {product.prices.map((price) => (
                       <span key={price}>$ {price}.00,</span>
                     ))}
                   </td>
                   <td>
-                    <button className="px-3 py-2">Edit</button>
+                    <button className="px-3 py-2" onClick={() => setEdit(true)}>
+                      Edit
+                    </button>
                     <button className="px-3 py-2" onClick={() => handleDelete(product._id)}>
                       Delete
                     </button>
                   </td>
+                  {edit && <ProductEdit product={product} setEdit={setEdit} />}
                 </tr>
               ))}
             </tbody>
