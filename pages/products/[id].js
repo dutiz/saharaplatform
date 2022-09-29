@@ -13,7 +13,7 @@ export default function Product({ product }) {
   const [size, setSize] = useState(0)
   const [extras, setExtras] = useState([])
   const [quantity, setQuantity] = useState(1)
-  const disptach = useDispatch()
+  const dispatch = useDispatch()
 
   function changePrice(number) {
     setPrice(price + number)
@@ -37,7 +37,7 @@ export default function Product({ product }) {
   }
 
   function handleClick() {
-    disptach(addProduct({ ...product, extras, price, quantity }))
+    dispatch(addProduct({ ...product, extras, price, quantity }))
   }
   return (
     <Layout title={product.title}>

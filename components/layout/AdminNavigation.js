@@ -26,6 +26,7 @@ export default function AdminNavigation() {
         <AdminNavItem href="/">Home</AdminNavItem>
         <AdminNavItem href="/orders">Orders</AdminNavItem>
         <AdminNavItem href="/products">Products</AdminNavItem>
+        <AdminNavItem href="/tables">Tables</AdminNavItem>
       </ul>
     </aside>
   )
