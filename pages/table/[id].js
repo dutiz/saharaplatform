@@ -21,7 +21,7 @@ export default function Tables({ table, products }) {
 
   async function createOrder() {
     try {
-      const res = await axios.put('http://localhost:3000/api/tables/' + table._id, {
+      const res = await axios.put('https://sahara-food.netlify.app/api/tables/' + table._id, {
         total: tableCart.total,
         orderedProducts: tableCart.products,
         status: 1,
@@ -36,7 +36,7 @@ export default function Tables({ table, products }) {
     }
   }
   async function handleClick(id) {
-    const menus = await axios.get('http://localhost:3000/api/products/' + id)
+    const menus = await axios.get('https://sahara-food.netlify.app/api/products/' + id)
     dispatch(addProduct({ ...menus.data, price, quantity }))
   }
 

@@ -41,7 +41,7 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const archiveTables = await axios.get('http://localhost:3000/api/archive')
+  const archiveTables = await axios.get('https://sahara-food.netlify.app/api/archive')
   return {
     props: {
       archives: archiveTables.data,

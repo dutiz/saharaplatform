@@ -9,7 +9,7 @@ import OrderedProductsSection from '@/components/sections/OrderedProductsSection
 export default function AdminTable({ table }) {
   async function handleClose() {
     try {
-      const res = await axios.post('http://localhost:3000/api/archive/', {
+      const res = await axios.post('https://sahara-food.netlify.app/api/archive/', {
         customer: table.customer,
         tblnumber: table.tblnumber,
         total: table.total,
@@ -19,7 +19,7 @@ export default function AdminTable({ table }) {
       if (res.status === 201) {
         // eslint-disable-next-line no-console
         console.log(`table with no ${table.tblnumber} is archived`)
-        await axios.put(`http://localhost:3000/api/tables/${table._id}`, {
+        await axios.put(`https://sahara-food.netlify.app/api/tables/${table._id}`, {
           total: 0,
           customer: '',
           orderedProducts: [],
@@ -47,7 +47,7 @@ export default function AdminTable({ table }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(`http://localhost:3000/api/tables/${params.id}`)
+  const res = await axios.get(`https://sahara-food.netlify.app/api/tables/${params.id}`)
   return {
     props: {
       table: res.data,

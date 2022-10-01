@@ -15,7 +15,7 @@ export default function ProductEdit({ product, setEdit }) {
         title,
         desc,
       }
-      await axios.put('http://localhost:3000/api/products/' + id, Product)
+      await axios.put('https://sahara-food.netlify.app/api/products/' + id, Product)
       Router.reload()
     } catch (err) {
       // eslint-disable-next-line no-console
