@@ -33,7 +33,7 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const res = await axios.get('http://localhost:3000/api/tables')
+  const res = await axios.get('https://sahara-food.netlify.app/api/tables')
   return {
     props: {
       tables: res.data,

@@ -44,7 +44,7 @@ export default function Add({ setClose }) {
         img: url,
       }
 
-      await axios.post('http://localhost:3000/api/products', newProduct)
+      await axios.post('https://sahara-food.netlify.app/api/products', newProduct)
       setClose(true)
     } catch (err) {
       // eslint-disable-next-line no-console
