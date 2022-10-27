@@ -25,11 +25,16 @@ export default function Admin({ children, title = null }) {
           dev ? 'debug-screens' : ''
         }`}
       >
-        <div className="row">
-          <div className="col-4">
+        <div className="row bg-gray-90">
+          <div className="col-3">
             <AdminNavigation />
           </div>
-          <div className="col-8 mt-10">{children}</div>
+          <div className="col-9 mt-10">
+            {children}
+            <p className="py-5 text-center text-md">
+              &copy; 2022 Sahara-Food , Developed by UpHigh Dev.
+            </p>
+          </div>
         </div>
       </div>
     </>
