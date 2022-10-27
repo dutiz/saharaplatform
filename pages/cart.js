@@ -31,7 +31,21 @@ export default function Cart() {
     }
   }
 
-  return (
+  return cart.products.length === 0 ? (
+    <Layout title="Cart">
+      <div className="container">
+        <div className="row my-10">
+          <div className="col-12 text-center">
+            <Image alt="non-ordering" src="/images/cart-background.png" width={300} height={300} />
+            <p className="mt-5 font-bold text-xl">No items added to cart yet</p>
+            <Button islink href="/menu" className="mt-5">
+              Menu
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  ) : (
     <Layout title="Cart">
       <div className="container my-24">
         <div className="row">
@@ -92,6 +106,7 @@ export default function Cart() {
             total={cart.total}
             orderedProducts={cart.products}
             createOrder={createOrder}
+            close={() => setCash(false)}
           />
         )}
       </div>
