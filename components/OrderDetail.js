@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function OrderDetail({ total, orderedProducts, createOrder }) {
+export default function OrderDetail({ total, orderedProducts, createOrder, close }) {
   const [customer, setCustomer] = useState('')
   const [address, setAddress] = useState('')
   function handleClick() {
@@ -8,17 +8,15 @@ export default function OrderDetail({ total, orderedProducts, createOrder }) {
   }
   return (
     <div
-      style={{ zIndex: 999 }}
+      style={{ zIndex: 9999 }}
       className="bg-gray-500 w-full h-screen absolute top-0 left-0 flex items-center justify-center "
     >
       <div
         style={{ width: 500 }}
         className="bg-white rounded-2xl p-12 flex flex-col items-center justify-center"
       >
-        <h1 className="font-bold">You will pay ${total} after delivery.</h1>
-        {orderedProducts.map((product) => (
-          <p key={product._id}>$ {product.price}</p>
-        ))}
+        <button onClick={close}>X</button>
+        <h1 className="my-2 font-bold">You will pay ${total} after delivery.</h1>
         <div className="flex flex-col w-full mb-4">
           <label htmlFor="fullName" className="mb-2">
             Name Surname
