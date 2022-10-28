@@ -44,7 +44,7 @@ export default function Product({ product }) {
       <div className="container">
         <div className="row mt-10">
           <div className="col-6">
-            <Image alt={product.title} src={product.img} width="524" height="519" />
+            <Image alt={product.title} src={product.img} width={524} height={519} />
           </div>
           <div className="col-6">
             <h1 className="text-5xl font-extrabold">{product.title}</h1>
@@ -57,7 +57,7 @@ export default function Product({ product }) {
                 aria-hidden="true"
                 onClick={() => handleSize(0)}
               >
-                <Image src="/images/size.png" layout="fill" alt="size" />
+                <Image src="/images/size.png" layout="fill" alt="size" width={30} height={30} />
                 <span
                   className={`absolute ${
                     size === 0 ? 'bg-orange-500' : 'bg-slate-500'
@@ -71,7 +71,7 @@ export default function Product({ product }) {
                 aria-hidden="true"
                 onClick={() => handleSize(1)}
               >
-                <Image src="/images/size.png" layout="fill" alt="size" />
+                <Image src="/images/size.png" layout="fill" alt="size" width={40} height={40} />
                 <span
                   className={`absolute -top-1 -right-7 ${
                     size === 1 ? 'bg-orange-500' : 'bg-slate-500'
@@ -85,7 +85,7 @@ export default function Product({ product }) {
                 aria-hidden="true"
                 onClick={() => handleSize(2)}
               >
-                <Image src="/images/size.png" layout="fill" alt="size" />
+                <Image src="/images/size.png" layout="fill" alt="size" width={50} height={50} />
                 <span
                   className={`absolute -top-1 -right-5 ${
                     size === 2 ? 'bg-orange-500' : 'bg-slate-500'
