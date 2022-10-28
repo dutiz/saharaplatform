@@ -8,11 +8,15 @@ export default function tables({ tables }) {
   return (
     <Admin title="Tables">
       <div className="row">
-        <div className="col-12">tables</div>
+        <div className="col-12">
+          <h1 className="font-bold text-3xl">Tables</h1>
+        </div>
+      </div>
+      <div className="row mt-5">
         {tables.map((table) => (
           <div className="col-3" key={table._id}>
-            <Link href={`/admin/tables/${table._id}`}>
-              <a>
+            <Link href={`/admin/tables/${table._id}`} legacyBehavior>
+              <a className="inline-block ">
                 <SVG src="/svg/table.svg" className=" w-10 h-10" />
               </a>
             </Link>
