@@ -41,24 +41,28 @@ export const data = {
   datasets: [
     {
       fill: true,
-      data: [18, 12, 17, 15, 15, 18, 14, 17],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(232, 227, 227, 0.5)',
+      data: [18, 22, 17, 20, 23, 14, 14, 17],
+      borderColor: 'rgb(227, 54, 107)',
+      backgroundColor: 'rgba(255, 68, 255, 0.27)',
     },
   ],
 }
 
 export default function DashboardCart({ svg, title, children }) {
   return (
-    <div className="col-3 mt-5">
-      <div className="rounded-md bg-white p-3">
+    <div className="col-4 mt-5">
+      <div className="rounded-md  bg-white p-3">
         <div className="flex flex-row items-center">
           <div className="col-6  ml-3">
             <p className="text-2xl">{title}</p>
             <p>{children}</p>
           </div>
           <div className="col-4 flex flex-col items-end">
-            <SVG src={`/svg/${svg}`} className="fill-current text-red-500 w-10 h-10" />
+            <SVG
+              style={{ color: 'rgb(227, 54, 107)' }}
+              src={`/svg/${svg}`}
+              className="fill-current  w-10 h-10"
+            />
           </div>
         </div>
         <Line className="mt-3" options={options} data={data} />
