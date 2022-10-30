@@ -39,9 +39,6 @@ export default function Tables({ table, products }) {
     const menus = await axios.get('https://sahara-food.netlify.app/api/products/' + id)
     dispatch(addProduct({ ...menus.data, price, quantity }))
   }
-
-  // eslint-disable-next-line no-console
-  console.log(tableCart)
   return (
     <Layout title={table.tblnumber}>
       <div className="container">

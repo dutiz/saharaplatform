@@ -17,8 +17,6 @@ export default function AdminTable({ table }) {
         orderedProducts: table.orderedProducts,
       })
       if (res.status === 201) {
-        // eslint-disable-next-line no-console
-        console.log(`table with no ${table.tblnumber} is archived`)
         await axios.put(`https://sahara-food.netlify.app/api/tables/${table._id}`, {
           total: 0,
           customer: '',
