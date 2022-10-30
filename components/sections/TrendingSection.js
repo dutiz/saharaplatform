@@ -19,11 +19,16 @@ export default function TrendingSection({ dailyOrdersFinded, order, p }) {
               <ul>
                 {Object.entries(order)
                   .sort((a, b) => b[1] - a[1])
-                  .map((count) =>
+                  .map((count, index) =>
                     p.map(
                       (prod) =>
                         count[0] === prod._id && (
-                          <TrendingCard key={count[0]} count={count} prod={prod} />
+                          <TrendingCard
+                            key={count[0]}
+                            count={count}
+                            prod={prod}
+                            index={index + 1}
+                          />
                         )
                     )
                   )}
