@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import { useState } from 'react'
+import SVG from 'react-inlinesvg'
 
 import Admin from '@/components/layout/Admin'
 
@@ -30,41 +31,46 @@ export default function Orders({ orders }) {
       <div className="row">
         <div className="col-12">
           <h1 className="text-4xl font-semibold">Orders</h1>
-          <table>
-            <thead>
+          <table className="mt-5 w-full bg-white rounded-lg">
+            <thead className="px-4 py-2">
               <tr>
-                <td>Order Id</td>
+                <td className="px-3">Order Id</td>
+                <td className="px-3">Date</td>
                 <td>Customer Name</td>
-                <td>Total</td>
+                <td>Location</td>
+                <td>Amount</td>
                 <td>Payment</td>
                 <td>Status</td>
-                <td>Action</td>
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
-                <tr key={order._id}>
-                  <td>
-                    <Link href={`/orders/${order._id}`}>
-                      <a>
+              {orders
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .map((order) => (
+                  <tr className="border-b border-black" key={order._id}>
+                    <td>
+                      <Link href={`/orders/${order._id}`}>
                         <span>
                           <abbr style={{ textDecoration: 'none' }} title={order._id}>
                             {order._id.slice(0, 10)}...
                           </abbr>
                         </span>
-                      </a>
-                    </Link>
-                  </td>
-                  <td>{order.customer}</td>
-                  <td>{order.method === 0 ? <span>cash</span> : <span>paid</span>}</td>
-                  <td>{status[order.status]}</td>
-                  <td>
-                    <button className="px-3 py-2" onClick={() => handleStatus(order._id)}>
-                      Next Stage
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      </Link>
+                    </td>
+                    {}
+                    <td>{order.createdAt}</td>
+                    <td className="text-center">{order.customer}</td>
+                    <td className="">{order.address}</td>
+                    <td>$ {order.total}</td>
+                    <td>{order.method === 0 ? <span>cash</span> : <span>paid</span>}</td>
+                    <td>{status[order.status]}</td>
+                    <td>
+                      <button className="px-3 py-2" onClick={() => handleStatus(order._id)}>
+                        <SVG src="/svg/three-dots.svg" className="w-5 h-5" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

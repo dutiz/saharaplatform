@@ -5,7 +5,7 @@ const style =
 
 export default function Button({ className, islink, href, children, onClick }) {
   return islink ? (
-    <Link href={href}>
+    <Link href={href} legacyBehavior>
       <a className={`inline-block ${style} ${className}`}>{children}</a>
     </Link>
   ) : (
