@@ -4,8 +4,7 @@ import dbConnect from 'utils/mongo'
 export default async function handler(req, res) {
   const { method } = req
 
-  dbConnect()
-
+  await dbConnect()
   if (method === 'GET') {
     try {
       const products = await Product.find()
@@ -14,7 +13,6 @@ export default async function handler(req, res) {
       res.status(500).json(err)
     }
   }
-
   if (method === 'POST') {
     try {
       const product = await Product.create(req.body)
