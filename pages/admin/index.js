@@ -32,9 +32,6 @@ export default function index({ orders, products }) {
         <DashboardCart svg="orders.svg" title={orders.length}>
           Orders
         </DashboardCart>
-        <DashboardCart svg="orders.svg" title={orders.length}>
-          Orders
-        </DashboardCart>
         <DashboardCart svg="admin-customers.svg" title={orders.length}>
           Customer
         </DashboardCart>
