@@ -32,6 +32,10 @@ module.exports = {
           ...config.colors.orange,
           500: '#F37202',
         },
+        pink: {
+          ...config.colors.pink,
+          500: '#E3366B',
+        },
       },
     },
   },
