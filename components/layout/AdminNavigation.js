@@ -20,7 +20,9 @@ export default function AdminNavigation() {
       className="flex top-0 flex-col w-full sticky bg-gray-200 rounded-r-3xl overflow-hidden h-screen"
     >
       <div className="flex items-center justify-center py-7 shadow-md">
-        <SVG src="/svg/logo.svg" className="w-20 h-20" />
+        <Link href="/admin">
+          <SVG src="/svg/logo.svg" className="w-20 h-20" />
+        </Link>
       </div>
       <ul className="flex flex-col py-4">
         <AdminNavItem href="/">Home</AdminNavItem>
