@@ -17,14 +17,14 @@ export default function OrderedProductsSection({ orderedProducts }) {
                   <p className="ml-6 text-xl">{Orproduct.title}</p>
                 </td>
                 <td className="px-6 text-xl font-semibold">
-                  {new Intl.NumberFormat("en-US", {
+                  {new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD',
                   }).format(Orproduct.price)}
                 </td>
                 <td className="px-6 text-xl">{Orproduct.quantity}</td>
                 <td className="px-6 text-xl font-semibold">
-                  {new Intl.NumberFormat("en-US", {
+                  {new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD',
                   }).format(Orproduct.price * Orproduct.quantity)}
