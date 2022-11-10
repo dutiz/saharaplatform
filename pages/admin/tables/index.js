@@ -14,7 +14,7 @@ export default function tables({ tables }) {
       </div>
       <div className="row mt-5">
         {tables.map((table) => (
-          <div className="col-3" key={table._id}>
+          <div className="col-6 lg:col-3" key={table._id}>
             <Link href={`/admin/tables/${table._id}`} legacyBehavior>
               <a className="inline-block ">
                 <SVG

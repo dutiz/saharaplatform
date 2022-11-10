@@ -42,11 +42,11 @@ export default function Product({ product }) {
   return (
     <Layout title={product.title}>
       <div className="container">
-        <div className="row mt-10">
-          <div className="col-6">
+        <div className="row my-10">
+          <div className="md:col-6">
             <Image alt={product.title} src={product.img} width={524} height={519} />
           </div>
-          <div className="col-6">
+          <div className="md:col-6">
             <h1 className="text-5xl font-extrabold">{product.title}</h1>
             <p className="mt-5">{product.desc}</p>
             <p className="text-2xl font-semibold">
@@ -57,7 +57,7 @@ export default function Product({ product }) {
               }).format(price)}
             </p>
             <h3 className="font-bold text-xl my-3">Chose the size</h3>
-            <div className="w-2/5 flex justify-between">
+            <div className="md:w-2/5 w-full flex justify-between">
               <div
                 className="w-7 h-7 relative cursor-pointer"
                 aria-hidden="true"

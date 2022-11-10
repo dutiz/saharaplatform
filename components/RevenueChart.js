@@ -108,13 +108,13 @@ export default function RevenueChart({ orders, tables }) {
     ],
   }
   return (
-    <div className="col-6">
+    <div className="lg:col-6">
       <div className="rounded-md  bg-white p-3">
         <h1 className="text-3xl font-semibold">Monthly Revenue</h1>
         <div className="row">
           <div className="col-6">
             <p className="mt-4">Orders Income</p>
-            <p className="mt-2 text-2xl">
+            <p className="mt-2 md:text-2xl text-xl">
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
                 ordersIncome
               )}
@@ -122,7 +122,7 @@ export default function RevenueChart({ orders, tables }) {
           </div>
           <div className="col-6">
             <p className="mt-4">Tables Income</p>
-            <p className="mt-2 text-2xl">
+            <p className="mt-2 md:text-2xl text-xl">
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
                 tablesIncome
               )}

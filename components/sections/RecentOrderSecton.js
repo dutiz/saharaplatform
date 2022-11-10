@@ -7,13 +7,16 @@ export default function RecentOrderSecton({ orders }) {
     <div className="lg:col-8">
       <div className="bg-white rounded-md p-3">
         <h2 className="text-xl font-semibold">Recent Orders</h2>
-        <table className="w-full pt-5">
+        <table className="w-full flex flex-row flex-no-wrap  rounded-lg overflow-hidden my-5">
           <tbody>
             {orders
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .slice(0, 6)
               .map((order) => (
-                <tr className="shadow-none hover:shadow-xl " key={order._id}>
+                <tr
+                  className="flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0 shadow-none hover:shadow-xl "
+                  key={order._id}
+                >
                   <td>
                     <p className="font-bold">{order.orderedProducts[0].title}</p>
                     <p>{order._id.slice(0, 7)}</p>
@@ -22,7 +25,7 @@ export default function RecentOrderSecton({ orders }) {
                     <p className="font-bold">{order.customer}</p>
                     <p className="mt-3">{order.address}</p>
                   </td>
-                  <td>
+                  <td className="my-3 md:my-0">
                     <p>
                       {new Intl.NumberFormat('en-US', {
                         style: 'currency',
@@ -40,7 +43,7 @@ export default function RecentOrderSecton({ orders }) {
                         : 'Delivered'}
                     </p>
                   </td>
-                  <td>
+                  <td className="mx-auto my-3 md:my-0 text-center">
                     <Link href={`/orders/${order._id}`} target="_blank">
                       <SVG src="/svg/three-dots.svg" className="fill-current w-5 h-5" />
                     </Link>
