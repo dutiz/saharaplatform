@@ -55,7 +55,7 @@ export default function Cart() {
     <Layout title="Cart">
       <div className="container my-24">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 overflow-x-auto">
             <table className="w-full text-left">
               <tbody>
                 <tr className="bg-gray-300">
