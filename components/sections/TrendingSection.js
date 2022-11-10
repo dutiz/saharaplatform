@@ -8,7 +8,7 @@ export default function TrendingSection({ dailyOrdersFinded, order, p }) {
     setMounted(true)
   }, [])
   return mounted ? (
-    <div className="col-4">
+    <div className="lg:col-4">
       <div className="bg-white rounded-md p-3">
         <h2 className="text-xl font-semibold">Daily Trending Menus</h2>
         <div className="row">

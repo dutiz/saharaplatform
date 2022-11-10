@@ -15,9 +15,10 @@ import OrderedProductsSection from '@/components/sections/OrderedProductsSection
 
 export default function Tables({ table, products }) {
   const tableCart = useSelector((state) => state.tableCart)
-  const [price, setPrice] = useState()
+  const [size, setSize] = useState(0)
   const [quantity, setQuantity] = useState(1)
   const dispatch = useDispatch()
+  let price = 0
 
   async function createOrder() {
     try {
@@ -49,6 +50,16 @@ export default function Tables({ table, products }) {
           </div>
         </div>
         <div className="row my-5">
+          <div className="col-12">
+            <h2 className="my-3 text-3xl font-semibold">Choose the size for your pizza</h2>
+            <div className="grid gap-4 lg:grid-cols-8 md:grid-cols-2 md:gap-8">
+              <Button onClick={() => setSize(0)}>Small</Button>
+              <Button onClick={() => setSize(1)} className="">
+                Medium
+              </Button>
+              <Button onClick={() => setSize(2)}>Large</Button>
+            </div>
+          </div>
           {products.map((product) => (
             <div key={product._id} className="col-6">
               <div className="lg:col-8 mt-8">
@@ -62,18 +73,28 @@ export default function Tables({ table, products }) {
                       <p className="mt-3">{product.desc}</p>
                       <div className="mt-3 row items-center">
                         <div className="col-6">
-                          <p className="font-semibold text-2xl">${price}</p>
+                          <p className="font-semibold text-2xl">
+                            {new Intl.NumberFormat('en-US', {
+                              style: 'currency',
+                              currency: 'USD',
+                            }).format(price)}
+                          </p>
                         </div>
                         <input
                           onChange={(e) => setQuantity(e.target.value)}
                           type="number"
                           placeholder="QTY"
+                          className="my-5"
                         />
-                        <button onClick={() => setPrice(product.prices[0])}>s</button>
-                        <button onClick={() => setPrice(product.prices[1])}>m</button>
-                        <button onClick={() => setPrice(product.prices[2])}>l</button>
                         <div className="col-6">
-                          <Button onClick={() => handleClick(product._id)}>Order</Button>
+                          <Button
+                            onClick={() => {
+                              price = product.prices[size]
+                              handleClick(product._id)
+                            }}
+                          >
+                            Order
+                          </Button>
                         </div>
                       </div>
                     </div>

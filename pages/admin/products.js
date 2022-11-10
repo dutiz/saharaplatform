@@ -10,8 +10,6 @@ import ProductEdit from '@/components/ProductEdit'
 export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   const [close, setClose] = useState(true)
-  const [edit, setEdit] = useState(false)
-
   async function handleDelete(id) {
     try {
       await axios.delete('https://sahara-food.netlify.app/api/products/' + id)
@@ -30,55 +28,56 @@ export default function Products({ products }) {
           <h1 className="text-4xl font-semibold">Products</h1>
           <button onClick={() => setClose(false)}>Add Products</button>
           {!close && <Add setClose={setClose} />}
-          <table>
-            <thead>
-              <tr>
-                <td>Product Id</td>
-                <td>Image</td>
-                <td>Title</td>
-                <td>Price</td>
-                <td>Action</td>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>
-                    <span>
-                      {' '}
-                      <abbr style={{ textDecoration: 'none' }} title={product._id}>
-                        {product._id.slice(0, 10)}...
-                      </abbr>
-                    </span>
-                  </td>
-                  <td>
-                    <Image
-                      alt={product.title}
-                      src={product.img}
-                      width={100}
-                      height={100}
-                      priority
-                    />
-                  </td>
-                  <td>{product.title}</td>
-                  <td>
-                    {product.prices.map((price) => (
-                      <span key={price}>$ {price}.00,</span>
-                    ))}
-                  </td>
-                  <td>
-                    <button className="px-3 py-2" onClick={() => setEdit(true)}>
-                      Edit
-                    </button>
-                    <button className="px-3 py-2" onClick={() => handleDelete(product._id)}>
-                      Delete
-                    </button>
-                  </td>
-                  {edit && <ProductEdit product={product} setEdit={setEdit} />}
+          <div className="overflow-x-auto">
+            <table>
+              <thead>
+                <tr>
+                  <td>Product Id</td>
+                  <td>Image</td>
+                  <td>Title</td>
+                  <td>Price</td>
+                  <td>Action</td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    <td>
+                      <span>
+                        {' '}
+                        <abbr style={{ textDecoration: 'none' }} title={product._id}>
+                          {product._id.slice(0, 10)}...
+                        </abbr>
+                      </span>
+                    </td>
+                    <td>
+                      <Image
+                        alt={product.title}
+                        src={product.img}
+                        width={100}
+                        height={100}
+                        priority
+                      />
+                    </td>
+                    <td>{product.title}</td>
+                    <td>
+                      {product.prices.map((price) => (
+                        <span key={price}>$ {price}.00,</span>
+                      ))}
+                    </td>
+                    <td>
+                      <ProductEdit product={product} />
+                    </td>
+                    <td>
+                      <button className="px-3 py-2" onClick={() => handleDelete(product._id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </Admin>

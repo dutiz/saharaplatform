@@ -14,10 +14,13 @@ export default function tables({ tables }) {
       </div>
       <div className="row mt-5">
         {tables.map((table) => (
-          <div className="col-3" key={table._id}>
+          <div className="col-6 lg:col-3" key={table._id}>
             <Link href={`/admin/tables/${table._id}`} legacyBehavior>
               <a className="inline-block ">
-                <SVG src="/svg/table.svg" className=" w-10 h-10" />
+                <SVG
+                  src="/svg/table.svg"
+                  className={`${table.status === 0 ? 'text-green-500' : 'text-red-500 '} w-10 h-10`}
+                />
               </a>
             </Link>
           </div>

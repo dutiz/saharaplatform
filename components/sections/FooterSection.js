@@ -17,7 +17,7 @@ export default function FooterSection() {
                   <p className="text-sm">Street 57 , Gostivar</p>
                 </div>
                 <div className="inline-flex items-center">
-                  <SVG src="/svg/phone.svg" className="w-6 h-6 mr-3" />
+                  <SVG src="/svg/phone.svg" className="stroke-black w-6 h-6 mr-3" />
                   <p className="text-sm">+389 77 777777</p>
                 </div>
                 <div className="inline-flex items-center">

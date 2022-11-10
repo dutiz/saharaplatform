@@ -51,7 +51,14 @@ export default function Navigation() {
               <SVG src="../svg/logo.svg" className="fill-current w-20 h-20" />
             </Link>
           </div>
-          <div className="col-2 md:hidden block">
+          <div className="flex flex-row items-center pr-4 md:hidden col-4">
+            <Link href="/cart" className="mr-3" passHref>
+              <SVG src="../svg/cart.svg" className=" fill-current w-9 h-9 " />
+              <div className="absolute right-auto top-10 w-5 h-5 bg-orange-500 p-1 flex items-center justify-center font-bold text-white rounded-xl">
+                {quantity}
+              </div>
+            </Link>
+
             <label htmlFor="menu-toggle" className="cursor-pointer">
               <SVG
                 src="../svg/menu.svg"
@@ -66,18 +73,21 @@ export default function Navigation() {
               <NavItem href="/">Home</NavItem>
               <NavItem href="/menu">Menu</NavItem>
               <NavItem href="/admin">Admin</NavItem>
+              <Link className="block md:hidden py-4" href="tel:0038972605415">
+                <SVG src="/svg/phone.svg" className=" w-6 h-6 mr-3" />
+              </Link>
             </ul>
           </div>
           <div className="md:col-4 md:flex items-center justify-end">
             <div className="relative mr-5">
-              <Link href="/cart" passHref>
+              <Link href="/cart" className="hidden md:block" passHref>
                 <SVG src="../svg/cart.svg" className=" fill-current w-9 h-9 " />
-                <div className="absolute -right-2 -top-2  w-5 h-5 bg-orange-500 p-1 flex items-center justify-center font-bold text-white rounded-xl">
+                <div className="absolute md:-right-2 -right-auto md:left-0 left-4 -top-2  w-5 h-5 bg-orange-500 p-1 flex items-center justify-center font-bold text-white rounded-xl">
                   {quantity}
                 </div>
               </Link>
             </div>
-            <Button islink href="tel:0038972605415">
+            <Button islink className="hidden md:flex" href="tel:0038972605415">
               0038972605415
             </Button>
           </div>

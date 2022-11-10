@@ -17,7 +17,12 @@ export default function MenuItem({ menu, href }) {
               <p className="mt-3">{menu.desc}</p>
               <div className="mt-3 row items-center">
                 <div className="col-6">
-                  <p className="font-semibold text-2xl">${menu.prices[0]}</p>
+                  <p className="font-semibold text-2xl">
+                    {new Intl.NumberFormat('en-US', {
+                      style: 'currency',
+                      currency: 'USD',
+                    }).format(menu.prices[0])}
+                  </p>
                 </div>
                 <div className="col-6">
                   <Button>Order</Button>

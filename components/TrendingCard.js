@@ -16,7 +16,11 @@ export default function TrendingCard({ count, prod, index }) {
         <div className="flex w-full flex-col">
           <p className="font-bold">{prod.title}</p>
           <div className="flex flex-row justify-between">
-            <p className="font-semibold">${prod.prices[0]}</p>
+            <p className="font-semibold">
+              {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                prod.prices[0]
+              )}
+            </p>
             <p>
               Order: <span className="ml-2 font-semibold">{count[1]} x </span>
             </p>
