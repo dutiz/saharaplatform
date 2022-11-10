@@ -10,8 +10,6 @@ import ProductEdit from '@/components/ProductEdit'
 export default function Products({ products }) {
   const [menuList, setMenuList] = useState(products)
   const [close, setClose] = useState(true)
-  const [edit, setEdit] = useState(false)
-
   async function handleDelete(id) {
     try {
       await axios.delete('https://sahara-food.netlify.app/api/products/' + id)
@@ -67,14 +65,13 @@ export default function Products({ products }) {
                     ))}
                   </td>
                   <td>
-                    <button className="px-3 py-2" onClick={() => setEdit(true)}>
-                      Edit
-                    </button>
+                    <ProductEdit product={product} />
+                  </td>
+                  <td>
                     <button className="px-3 py-2" onClick={() => handleDelete(product._id)}>
                       Delete
                     </button>
                   </td>
-                  {edit && <ProductEdit product={product} setEdit={setEdit} />}
                 </tr>
               ))}
             </tbody>
