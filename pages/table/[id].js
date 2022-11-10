@@ -124,7 +124,12 @@ export default function Tables({ table, products }) {
                         <Image alt={cart.title} src={cart.img} width="150" height="150" />
                         <p className="ml-6 text-3xl">{cart.title}</p>
                       </td>
-                      <td className="px-6 text-xl font-semibold">$ {cart.price}</td>
+                      <td className="px-6 text-xl font-semibold">
+                        {new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        }).format(cart.price)}
+                      </td>
                       <td className="px-6 text-xl">{cart.quantity}</td>
                       <td className="px-6 text-xl font-semibold">
                         {new Intl.NumberFormat('en-US', {
