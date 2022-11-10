@@ -42,9 +42,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: -10;
-  right: -10;
+  left: 0;
 }
 .item {
   display: flex;
