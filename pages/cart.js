@@ -35,8 +35,14 @@ export default function Cart() {
     <Layout title="Cart">
       <div className="container">
         <div className="row my-10">
-          <div className="col-12 text-center">
-            <Image alt="non-ordering" src="/images/cart-background.png" width={300} height={300} />
+          <div className="col-12 items-center text-center">
+            <Image
+              alt="non-ordering"
+              className="mx-auto"
+              src="/images/cart-background.png"
+              width={300}
+              height={300}
+            />
             <p className="mt-5 font-bold text-xl">No items added to cart yet</p>
             <Button islink href="/menu" className="mt-5">
               Menu
@@ -71,10 +77,19 @@ export default function Cart() {
                         <span key={extra._id}>{extra.text} , </span>
                       ))}
                     </td>
-                    <td className="px-6 text-xl font-semibold">$ {product.price}</td>
+                    <td className="px-6 text-xl font-semibold">
+                      {' '}
+                      {new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(product.price)}
+                    </td>
                     <td className="px-6 text-xl">{product.quantity}</td>
                     <td className="px-6 text-xl font-semibold">
-                      $ {product.price * product.quantity}
+                      {new Intl.NumberFormat('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      }).format(product.price * product.quantity)}
                     </td>
                     <td>
                       <button>
