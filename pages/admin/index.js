@@ -1,11 +1,14 @@
 import axios from 'axios'
 
+import DailyBarChart from '@/components/DailyBarChart'
 import DashboardCart from '@/components/DashboardCart'
-import Dropdown from '@/components/Dropdown'
+import IncomeDashboardCart from '@/components/IncomeDashboardCart'
 import Admin from '@/components/layout/Admin'
+import RevenueChart from '@/components/RevenueChart'
+import RecentOrderSecton from '@/components/sections/RecentOrderSecton'
 import TrendingSection from '@/components/sections/TrendingSection'
 
-export default function index({ orders, products }) {
+export default function index({ orders, products, tables }) {
   const TodayDate = new Date().toISOString().split('T')[0]
   const dailyOrdersFinded = orders.filter((order) => order.createdAt.split('T')[0] === TodayDate)
   const productsOrdered = []
@@ -29,59 +32,24 @@ export default function index({ orders, products }) {
         </div>
       </div>
       <div className="row">
-        <DashboardCart svg="orders.svg" title={orders.length}>
+        <DashboardCart svg="orders.svg" title={orders.length} data={orders}>
           Orders
         </DashboardCart>
-        <DashboardCart svg="admin-customers.svg" title={orders.length}>
-          Customer
+        <DashboardCart svg="admin-customers.svg" data={orders}>
+          Customers
         </DashboardCart>
-        <DashboardCart svg="income.svg" title={orders.length}>
-          Income
-        </DashboardCart>
+        <IncomeDashboardCart svg="income.svg" data={orders}>
+          Incomes
+        </IncomeDashboardCart>
       </div>
-      {/* RecentOrdersSection */}
-      <div className="row my-5">
-        <div className="col-8">
-          <div className="bg-white rounded-md p-3">
-            <h2 className="text-xl font-semibold">Recent Orders</h2>
-            <table className="w-full pt-5">
-              <tbody>
-                {orders
-                  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                  .slice(0, 6)
-                  .map((order) => (
-                    <tr className="shadow-none hover:shadow-xl " key={order._id}>
-                      <td>
-                        <p className="font-bold">{order.orderedProducts[0].title}</p>
-                        <p>{order._id.slice(0, 7)}</p>
-                      </td>
-                      <td>
-                        <p className="font-bold">{order.customer}</p>
-                        <p className="mt-3">{order.address}</p>
-                      </td>
-                      <td>
-                        <p>
-                          $ {order.total} x{order.orderedProducts[0].quantity}
-                        </p>
-                      </td>
-                      <td>
-                        <p className="mx-5 text-center px-3 py-1 rounded-lg text-white bg-gradient-to-r from-orange-500 to-red-500">
-                          {order.status === 0
-                            ? 'Preparing'
-                            : order.status === 1
-                            ? 'On the way'
-                            : 'Delivered'}
-                        </p>
-                      </td>
-                      <td>
-                        <Dropdown />
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div className="row mt-8">
+        {/* Revenue Chart  */}
+        <RevenueChart orders={orders} tables={tables} />
+        <DailyBarChart orders={orders} tables={tables} />
+      </div>
+      <div className="row my-8">
+        {/* RecentOrdersSection */}
+        <RecentOrderSecton orders={orders} />
         {/* Daily Trending Menus */}
         <TrendingSection dailyOrdersFinded={dailyOrdersFinded} order={counter} p={products} />
       </div>
@@ -101,11 +69,12 @@ export async function getServerSideProps(ctx) {
   }
   const menuOrders = await axios.get('https://sahara-food.netlify.app/api/orders')
   const menuProducts = await axios.get('https://sahara-food.netlify.app/api/products')
-
+  const archiveTables = await axios.get('https://sahara-food.netlify.app/api/archive')
   return {
     props: {
       orders: menuOrders.data,
       products: menuProducts.data,
+      tables: archiveTables.data,
     },
   }
 }
