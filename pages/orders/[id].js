@@ -103,13 +103,21 @@ export default function Order({ order }) {
           <div className={styles.wrapper}>
             <h2 className={styles.title}>CART TOTAL</h2>
             <div className={styles.totalText}>
-              <b className={styles.totalTextTitle}>Subtotal:</b>${order.total}
+              <b className={styles.totalTextTitle}>Subtotal:</b>{' '}
+              {new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(order.total)}
             </div>
             <div className={styles.totalText}>
               <b className={styles.totalTextTitle}>Discount:</b>$0.00
             </div>
             <div className={styles.totalText}>
-              <b className={styles.totalTextTitle}>Total:</b>${order.total}
+              <b className={styles.totalTextTitle}>Total:</b>{' '}
+              {new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(order.total)}
             </div>
             <button disabled className={styles.button}>
               {order.method === 0 ? 'CASH' : 'PAID'}

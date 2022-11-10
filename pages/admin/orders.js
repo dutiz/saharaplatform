@@ -25,7 +25,7 @@ export default function Orders({ orders }) {
     const item = orderList.filter((order) => order._id === id)[0]
     const currentStatus = item.status
     try {
-      const res = await axios.put('http://localhost:3000/api/orders/' + id, {
+      const res = await axios.put('https://sahara-food.netlify.app/api/orders/' + id, {
         status: currentStatus + 1,
       })
       setOrderList([res.data, ...orderList.filter((order) => order._id !== id)])
@@ -135,7 +135,7 @@ export async function getServerSideProps(ctx) {
       },
     }
   }
-  const ordersRes = await axios.get('http://localhost:3000/api/orders')
+  const ordersRes = await axios.get('https://sahara-food.netlify.app/api/orders')
 
   return {
     props: {

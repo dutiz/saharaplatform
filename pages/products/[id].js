@@ -49,7 +49,13 @@ export default function Product({ product }) {
           <div className="col-6">
             <h1 className="text-5xl font-extrabold">{product.title}</h1>
             <p className="mt-5">{product.desc}</p>
-            <p className="text-2xl font-semibold">${price}</p>
+            <p className="text-2xl font-semibold">
+              {' '}
+              {new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(price)}
+            </p>
             <h3 className="font-bold text-xl my-3">Chose the size</h3>
             <div className="w-2/5 flex justify-between">
               <div
