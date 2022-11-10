@@ -77,7 +77,7 @@ export default function Tables({ table, products }) {
                             {new Intl.NumberFormat('en-US', {
                               style: 'currency',
                               currency: 'USD',
-                            }).format(price)}
+                            }).format(product.prices[size])}
                           </p>
                         </div>
                         <input
@@ -126,7 +126,10 @@ export default function Tables({ table, products }) {
                       </td>
                       <td className="px-6 text-xl font-semibold">$ {cart.price}</td>
                       <td className="px-6 text-xl">{cart.quantity}</td>
-                      <td className="px-6 text-xl font-semibold">$ {cart.price * cart.quantity}</td>
+                      <td className="px-6 text-xl font-semibold">{new Intl.NumberFormat('en-US', {
+                              style: 'currency',
+                              currency: 'USD',
+                            }).format(cart.price * cart.quantity)}</td>
                       <td>
                         <button>
                           <SVG src="/svg/bin.svg" className="w-8 h-8 mr-3" />
