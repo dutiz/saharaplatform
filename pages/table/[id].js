@@ -131,6 +131,7 @@ export default function Tables({ table, products }) {
                         style: 'currency',
                         currency: 'USD',
                       }).format(product.price * product.quantity)}
+                      </td>
                       <td>
                         <button>
                           <SVG src="/svg/bin.svg" className="w-8 h-8 mr-3" />
