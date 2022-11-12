@@ -210,9 +210,18 @@ export default function AdminTable({ table, products }) {
     </Admin>
   )
 }
+export async function getServerSideProps(ctx) {
+  const myCookie = ctx.req?.cookies || ''
 
-export async function getServerSideProps({ params }) {
-  const res = await axios.get(`https://sahara-food.netlify.app/api/tables/${params.id}`)
+  if (myCookie.token !== process.env.TOKEN) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+  const res = await axios.get(`https://sahara-food.netlify.app/api/tables/${ctx.params.id}`)
   const menu = await axios.get('https://sahara-food.netlify.app/api/products')
   return {
     props: {
