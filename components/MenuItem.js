@@ -10,7 +10,7 @@ export default function MenuItem({ menu, href }) {
         <Link href={href}>
           <div className="row justify-center ">
             <div className="md:col-6 flex flex-col items-center">
-              <Image src={menu.img} width={208} height={208} alt="pizza-santorini" />
+              <Image src={menu.img} width={208} height={208} alt={menu.title} />
             </div>
             <div className="lg:col-6">
               <h2 className="font-extrabold text-3xl mt-3 lg:mt-0">{menu.title}</h2>

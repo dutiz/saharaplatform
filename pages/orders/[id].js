@@ -46,7 +46,7 @@ export default function Order({ order }) {
           \
           <div className={styles.row}>
             <div className={statusClass(0)}>
-              <Image src="/images/paid.png" width={30} height={30} alt="" />
+              <Image src="/images/paid.png" width={30} height={30} alt="payment" />
               <span>Payment</span>
               <div className={styles.checkedIcon}>
                 <Image
@@ -54,12 +54,12 @@ export default function Order({ order }) {
                   src="/images/checked.png"
                   width={20}
                   height={20}
-                  alt=""
+                  alt="checked"
                 />
               </div>
             </div>
             <div className={statusClass(1)}>
-              <Image src="/images/bake.png" width={30} height={30} alt="" />
+              <Image src="/images/bake.png" width={30} height={30} alt="bake" />
               <span>Preparing</span>
               <div className={styles.checkedIcon}>
                 <Image
@@ -67,12 +67,12 @@ export default function Order({ order }) {
                   src="/images/checked.png"
                   width={20}
                   height={20}
-                  alt=""
+                  alt="checked"
                 />
               </div>
             </div>
             <div className={statusClass(2)}>
-              <Image src="/images/bike.png" width={30} height={30} alt="" />
+              <Image src="/images/bike.png" width={30} height={30} alt="bike" />
               <span>On the way</span>
               <div className={styles.checkedIcon}>
                 <Image
@@ -80,12 +80,12 @@ export default function Order({ order }) {
                   src="/images/checked.png"
                   width={20}
                   height={20}
-                  alt=""
+                  alt="checked"
                 />
               </div>
             </div>
             <div className={statusClass(3)}>
-              <Image src="/images/delivered.png" width={30} height={30} alt="" />
+              <Image src="/images/delivered.png" width={30} height={30} alt="delivered" />
               <span>Delivered</span>
               <div className={styles.checkedIcon}>
                 <Image
@@ -93,7 +93,7 @@ export default function Order({ order }) {
                   src="/images/checked.png"
                   width={20}
                   height={20}
-                  alt=""
+                  alt="delivered"
                 />
               </div>
             </div>
