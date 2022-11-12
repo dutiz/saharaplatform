@@ -5,7 +5,7 @@ import { Router } from 'next/router'
 import { useState } from 'react'
 import SVG from 'react-inlinesvg'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct, reset } from 'redux/tableSlice'
+import { addProduct, removeProduct, reset } from 'redux/tableSlice'
 import dbConnect from 'utils/mongo'
 
 import Table from '/models/Table'
@@ -23,8 +23,8 @@ export default function Tables({ table, products }) {
   async function createOrder() {
     try {
       const res = await axios.put('https://sahara-food.netlify.app/api/tables/' + table._id, {
-        total: tableCart.total,
-        orderedProducts: tableCart.products,
+        total: table.total + tableCart.total,
+        orderedProducts: [...table.orderedProducts, ...tableCart.products],
         status: 1,
       })
       if (res.status === 200) {
@@ -61,41 +61,39 @@ export default function Tables({ table, products }) {
             </div>
           </div>
           {products.map((product) => (
-            <div key={product._id} className="col-6">
-              <div className="lg:col-8 mt-8">
-                <div className="bg-gray-300 p-8 shadow-lg">
-                  <div className="row justify-center ">
-                    <div className="md:col-6 flex flex-col items-center">
-                      <Image src={product.img} width={208} height={208} alt="pizza-santorini" />
-                    </div>
-                    <div className="lg:col-6">
-                      <h2 className="font-extrabold text-3xl mt-3 lg:mt-0">{product.title}</h2>
-                      <p className="mt-3">{product.desc}</p>
-                      <div className="mt-3 row items-center">
-                        <div className="col-6">
-                          <p className="font-semibold text-2xl">
-                            {new Intl.NumberFormat('en-US', {
-                              style: 'currency',
-                              currency: 'USD',
-                            }).format(price)}
-                          </p>
-                        </div>
-                        <input
-                          onChange={(e) => setQuantity(e.target.value)}
-                          type="number"
-                          placeholder="QTY"
-                          className="my-5"
-                        />
-                        <div className="col-6">
-                          <Button
-                            onClick={() => {
-                              price = product.prices[size]
-                              handleClick(product._id)
-                            }}
-                          >
-                            Order
-                          </Button>
-                        </div>
+            <div key={product._id} className="lg:col-6 mt-8">
+              <div className="bg-gray-300 p-8 shadow-lg">
+                <div className="row justify-center ">
+                  <div className="md:col-6 flex flex-col items-center">
+                    <Image src={product.img} width={208} height={208} alt={product.name} />
+                  </div>
+                  <div className="lg:col-6">
+                    <h2 className="font-extrabold text-3xl mt-3 lg:mt-0">{product.title}</h2>
+                    <p className="mt-3">{product.desc}</p>
+                    <div className="mt-3 row items-center">
+                      <div className="col-6">
+                        <p className="font-semibold text-2xl">
+                          {new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                          }).format(product.prices[size])}
+                        </p>
+                      </div>
+                      <input
+                        onChange={(e) => setQuantity(e.target.value)}
+                        type="number"
+                        placeholder="QTY"
+                        className="my-5"
+                      />
+                      <div className="col-6">
+                        <Button
+                          onClick={() => {
+                            price = product.prices[size]
+                            handleClick(product._id)
+                          }}
+                        >
+                          Order
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -124,11 +122,21 @@ export default function Tables({ table, products }) {
                         <Image alt={cart.title} src={cart.img} width="150" height="150" />
                         <p className="ml-6 text-3xl">{cart.title}</p>
                       </td>
-                      <td className="px-6 text-xl font-semibold">$ {cart.price}</td>
+                      <td className="px-6 text-xl font-semibold">
+                        {new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        }).format(cart.price)}
+                      </td>
                       <td className="px-6 text-xl">{cart.quantity}</td>
-                      <td className="px-6 text-xl font-semibold">$ {cart.price * cart.quantity}</td>
+                      <td className="px-6 text-xl font-semibold">
+                        {new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        }).format(cart.price * cart.quantity)}
+                      </td>
                       <td>
-                        <button>
+                        <button onClick={() => dispatch(removeProduct(cart))}>
                           <SVG src="/svg/bin.svg" className="w-8 h-8 mr-3" />
                         </button>
                       </td>
@@ -136,6 +144,13 @@ export default function Tables({ table, products }) {
                   ))}
                 </tbody>
               </table>
+              <p>
+                Total:{' '}
+                {new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(tableCart.total)}
+              </p>
               <Button onClick={() => createOrder()}>Complete</Button>
             </div>
           </div>

@@ -9,7 +9,7 @@ import Button from '@/components/Button'
 import Layout from '@/components/layout/Layout'
 import OrderDetail from '@/components/OrderDetail'
 
-import { reset } from '../redux/cartSlice'
+import { removeProduct, reset } from '../redux/cartSlice'
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart)
@@ -30,7 +30,6 @@ export default function Cart() {
       console.log(err)
     }
   }
-
   return cart.products.length === 0 ? (
     <Layout title="Cart">
       <div className="container">
@@ -92,7 +91,7 @@ export default function Cart() {
                       }).format(product.price * product.quantity)}
                     </td>
                     <td>
-                      <button>
+                      <button onClick={() => dispatch(removeProduct(product))}>
                         <SVG src="/svg/bin.svg" className="w-8 h-8 mr-3" />
                       </button>
                     </td>
@@ -104,7 +103,12 @@ export default function Cart() {
         </div>
         <div className="mt-10 flex flex-row justify-end">
           <div className="col-6 text-right">
-            <p>Subtotal: ${cart.total}</p>
+            <p>
+              Subtotal:{' '}
+              {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                cart.total
+              )}
+            </p>
             {open ? (
               <div>
                 <Button onClick={() => setCash(true)} className="my-4">
