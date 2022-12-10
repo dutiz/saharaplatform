@@ -10,8 +10,8 @@ import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 import store from 'redux/store'
 
-import useUrl from '../../utils/useUrl'
 import * as gtag from '../lib/gtag'
+import useUrl from '../utils/useUrl'
 
 function MyApp({ Component, pageProps }) {
   const url = useUrl()
