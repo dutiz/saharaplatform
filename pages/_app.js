@@ -11,10 +11,8 @@ import { Provider } from 'react-redux'
 import store from 'redux/store'
 
 import * as gtag from '../lib/gtag'
-import useUrl from '../utils/useUrl'
 
 function MyApp({ Component, pageProps }) {
-  const url = useUrl()
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -57,7 +55,7 @@ function MyApp({ Component, pageProps }) {
           description: 'Best way to eat healthy',
           images: [
             {
-              url: url + '/images/og-image.png',
+              url: 'https://sahara-food.netlify.app/images/og-image.png',
               alt: 'OG Image',
             },
           ],
