@@ -10,9 +10,11 @@ import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 import store from 'redux/store'
 
+import useUrl from '../../utils/useUrl'
 import * as gtag from '../lib/gtag'
 
 function MyApp({ Component, pageProps }) {
+  const url = useUrl()
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -50,9 +52,15 @@ function MyApp({ Component, pageProps }) {
         openGraph={{
           type: 'website',
           locale: 'en_EN',
-          url: '',
+          url: 'https://sahara-food.netlify.app/',
           site_name: 'Sahara Platform',
           description: 'Best way to eat healthy',
+          images: [
+            {
+              url: url + '/images/og-image.png',
+              alt: 'OG Image',
+            },
+          ],
         }}
       />
       <Provider store={store}>
