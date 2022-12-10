@@ -5,7 +5,7 @@ import '@fontsource/mulish/800.css'
 
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { DefaultSeo } from 'next-seo'
+import { NextSeo } from 'next-seo'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux'
 import store from 'redux/store'
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
           `,
         }}
       />
-      <DefaultSeo
+      <NextSeo
         openGraph={{
           type: 'website',
           locale: 'en_EN',
